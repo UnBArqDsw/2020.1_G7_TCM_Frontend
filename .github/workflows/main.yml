@@ -1,26 +1,16 @@
+
 name: CI
-on: [push, pull_request]
+on: push
 jobs:
   build:
     runs-on: ubuntu-18.04
     env:
       working-directory: ./tcm_frontend
     steps:
+    - uses: actions/checkout@v2
     - name: Install modules
       run: yarn
       working-directory: ${{env.working-directory}}
     - name: Run ESLint
       run: yarn eslint
       working-directory: ${{env.working-directory}}
-# jobs:
-#   build:
-#     runs-on: ubuntu-18.04
-#     env:
-#       working-directory: ./tcm_frontend
-#     steps:
-#     - name: Install modules
-#       run: yarn
-#       working-directory: ${{env.working-directory}}
-#     - name: Run ESLint
-#       run: yarn eslint
-#       working-directory: ${{env.working-directory}}
