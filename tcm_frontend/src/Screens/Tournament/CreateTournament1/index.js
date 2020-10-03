@@ -5,13 +5,7 @@ const CreateTournament1 = () => {
   return (
     <div id="App">
       <p className="titulo">Cadastre seu torneio</p>
-      <Formik
-        initialValues={{ name: '', email: '' }}
-        onSubmit={async (values) => {
-          await new Promise((resolve) => setTimeout(resolve, 500));
-          alert(JSON.stringify(values, null, 2));
-        }}
-      >
+      <Formik>
         <Form>
           <Field name="name" placeholder="Nome do torneio" type="text" />
           <Field name="type" placeholder="Tipo" type="text" />
