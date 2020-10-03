@@ -4,6 +4,8 @@ import { Switch, Route } from 'react-router-dom';
 import Login from './Screens/User/Account/Login';
 import SignUp from './Screens/User/Account/SignUp';
 
+
+
 const Routes = () => {
   return (
     <Switch>
