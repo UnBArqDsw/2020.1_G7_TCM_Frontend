@@ -6,15 +6,14 @@ import Typography from '@material-ui/core/Typography';
 import { MoreVert } from '@material-ui/icons';
 import IconButton from '@material-ui/core/IconButton';
 
-
 const useStyles = makeStyles((theme) => ({
   header: {
     flexGrow: 1,
     margin: 0,
-    height: 57
+    height: 57,
   },
-  appBar:{
-      backgroundColor: "#0BC619",
+  appBar: {
+    backgroundColor: '#0BC619',
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -22,12 +21,12 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
     fontWeight: 'bold',
-    color: '#FFFFFF'
+    color: '#FFFFFF',
   },
-  icon:{
-      color: "#ffffff",
-      size: 50
-  }
+  icon: {
+    color: '#ffffff',
+    size: 50,
+  },
 }));
 
 export default function Appbar() {
@@ -35,17 +34,16 @@ export default function Appbar() {
 
   return (
     <div className={classes.header}>
-      <AppBar className={classes.appBar } position="static">
+      <AppBar className={classes.appBar} position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             TCM
           </Typography>
           <IconButton>
-              <MoreVert className={classes.icon}/>
+            <MoreVert className={classes.icon} />
           </IconButton>
         </Toolbar>
       </AppBar>
     </div>
   );
 }
-

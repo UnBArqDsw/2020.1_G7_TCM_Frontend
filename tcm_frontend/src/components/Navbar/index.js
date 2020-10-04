@@ -6,6 +6,9 @@ import { Home, Search, AddCircle, EmojiEvents } from '@material-ui/icons';
 const makestyles = makeStyles({
   bottomNavigation: {
     backgroundColor: '#EAF1EB',
+    widht: '100%',
+    flexGrow: '1',
+    margin: '0',
   },
 });
 
