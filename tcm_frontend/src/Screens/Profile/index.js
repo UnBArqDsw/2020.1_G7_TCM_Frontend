@@ -6,6 +6,7 @@ import Navbar from '../../components/Navbar';
 import Avatar from '@material-ui/core/Avatar';
 import { Link as RouterLink } from 'react-router-dom';
 import Logo from '../../assets/profile.jpg';
+import  FormProfile from './FormProfile';
 
 const Profile = () => {
     const classes = useStyles();    
@@ -21,10 +22,7 @@ const Profile = () => {
                     Editar foto
                 </Link>
             </div>
-            <div>
-
-            </div>
-            
+            <FormProfile />
         </Container>
     );
 }

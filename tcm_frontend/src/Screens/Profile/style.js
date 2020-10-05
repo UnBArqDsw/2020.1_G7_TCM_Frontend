@@ -39,5 +39,8 @@ export const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('sm')]: {
         fontSize: '2.0rem',
         },
+    },
+    styleFormProfile: {
+        height: '100%',
     }
 }));
