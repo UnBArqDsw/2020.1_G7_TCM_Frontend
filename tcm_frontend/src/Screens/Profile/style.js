@@ -15,5 +15,16 @@ export const useStyles = makeStyles((theme) => ({
         position: 'fixed',
         bottom: '0',
         width: '100%',
-    }
+    },
+    avatar: {
+        background: '#',
+        display: 'flex',
+        '& > *': {
+          width: '20vh',
+          height: '20vh', 
+          marginTop: '5%',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+        },
+      }
 }));
