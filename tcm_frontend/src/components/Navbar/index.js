@@ -1,16 +1,12 @@
 import React from 'react';
-import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import {
+  BottomNavigation,
+  BottomNavigationAction,
+  InputLabel,
+} from '@material-ui/core';
 import { Home, Search, AddCircle, EmojiEvents } from '@material-ui/icons';
 
-const makestyles = makeStyles({
-  bottomNavigation: {
-    backgroundColor: '#EAF1EB',
-    widht: '100%',
-    flexGrow: '1',
-    margin: '0',
-  },
-});
+import { makestyles } from './style';
 
 function Navbar() {
   const styles = makestyles();
@@ -19,24 +15,27 @@ function Navbar() {
     <BottomNavigation className={styles.bottomNavigation} showLabels>
       <BottomNavigationAction
         className="bottom-navigation-icon"
-        label="Feed"
-        icon={<Home style={{ color: '#050505', opacity: '70%' }} />}
+        name="feed"
+        label={<InputLabel className={styles.label}>Feed</InputLabel>}
+        icon={<Home className={styles.icon} />}
       />
       <BottomNavigationAction
         className="bottom-navigation-icon"
-        name="Pesquisa"
-        label="Search"
-        icon={<Search style={{ color: '#050505', opacity: '70%' }} />}
+        name="search"
+        label={<InputLabel className={styles.label}>Pesquisa</InputLabel>}
+        icon={<Search className={styles.icon} />}
       />
       <BottomNavigationAction
         className="bottom-navigation-icon"
-        label="Criar Torneio"
-        icon={<AddCircle style={{ color: '#050505', opacity: '70%' }} />}
+        name="create-tournament"
+        label={<InputLabel className={styles.label}>Criar Torneio</InputLabel>}
+        icon={<AddCircle className={styles.icon} />}
       />
       <BottomNavigationAction
         className="bottom-navigation-icon"
-        label="Torneios"
-        icon={<EmojiEvents style={{ color: '#050505', opacity: '70%' }} />}
+        name="my-tournaments"
+        label={<InputLabel className={styles.label}>Meus Torneios</InputLabel>}
+        icon={<EmojiEvents className={styles.icon} />}
       />
     </BottomNavigation>
   );

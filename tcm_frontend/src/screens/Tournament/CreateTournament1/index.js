@@ -8,7 +8,6 @@ const makestyles = makeStyles({
   container: {
     display: 'flex',
     width: '100%',
-    height: '100%',
     flexDirection: 'column',
     padding: '0',
     margin: '0',
