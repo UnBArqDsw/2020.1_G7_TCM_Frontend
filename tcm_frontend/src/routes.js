@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { Switch, Route } from 'react-router-dom';
-import Login from './Screens/User/Account/Login';
-import SignUp from './Screens/User/Account/SignUp';
-import Feed from './Screens/Feed';
+import Login from './screens/user/account/Login';
+import SignUp from './screens/user/account/SignUp';
+import Feed from './screens/Feed';
 
 const Routes = () => {
   return (
