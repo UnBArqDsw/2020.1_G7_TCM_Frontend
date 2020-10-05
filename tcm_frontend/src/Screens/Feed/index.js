@@ -3,6 +3,7 @@ import { Container } from '@material-ui/core';
 import AppBar from '../../components/Appbar';
 import NavBar from '../../components/Navbar';
 import { useStyles } from './styles';
+import Card from '../../components/Card';
 
 export default function Feed() {
   const classes = useStyles();
@@ -10,6 +11,9 @@ export default function Feed() {
   return (
     <Container className={classes.container}>
       <AppBar />
+      <div>
+        <Card />
+      </div>
       <div className={classes.footer}>
         <NavBar />
       </div>

@@ -1,7 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(() => ({
-  footer: { overflow: 'hidden', position: 'fixed', bottom: '0', width: '100%' },
+  footer: {
+    overflow: 'hidden',
+    position: 'fixed',
+    bottom: '0',
+    width: '100%',
+  },
   container: {
     flexGrow: 1,
     height: '100%',
