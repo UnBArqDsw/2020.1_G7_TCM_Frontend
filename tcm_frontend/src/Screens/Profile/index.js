@@ -1,10 +1,10 @@
 import React from 'react'
-import {Container} from '@material-ui/core';
+import {Container, Link} from '@material-ui/core';
 import { useStyles } from './style';
 import AppBar from '../../components/Appbar';
 import Navbar from '../../components/Navbar';
 import Avatar from '@material-ui/core/Avatar';
-
+import { Link as RouterLink } from 'react-router-dom';
 import Logo from '../../assets/profile.jpg';
 
 const Profile = () => {
@@ -17,7 +17,14 @@ const Profile = () => {
             </div>
             <div className={classes.avatar}>
                 <Avatar alt="Remy Sharp" src={Logo} />
+                <Link className={classes.styleLink}>
+                    Editar foto
+                </Link>
             </div>
+            <div>
+
+            </div>
+            
         </Container>
     );
 }

@@ -19,6 +19,7 @@ export const useStyles = makeStyles((theme) => ({
     avatar: {
         background: '#',
         display: 'flex',
+        flexDirection: 'column',
         '& > *': {
           width: '20vh',
           height: '20vh', 
@@ -26,5 +27,17 @@ export const useStyles = makeStyles((theme) => ({
           marginLeft: 'auto',
           marginRight: 'auto',
         },
-      }
+    
+    },
+    styleLink: {   
+        color: '#000000',
+        marginTop: '2%',
+        textAlign: 'center',
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '1.1rem',
+        },
+        [theme.breakpoints.up('sm')]: {
+        fontSize: '2.0rem',
+        },
+    }
 }));
