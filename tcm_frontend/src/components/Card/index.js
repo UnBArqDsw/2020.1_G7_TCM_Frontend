@@ -10,16 +10,18 @@ export default function Feed() {
 
   return (
     <Card className={classes.card}>
-      <CardContent>
-        <div className={classes.stylediv}>
-          <Avatar className={classes.avatar}>LA</Avatar>
-        </div>
+      <CardContent style={{ display: 'flex' }}>
+        <Avatar className={classes.avatar}>LA</Avatar>
         <Container className={classes.stylecontainer}>
-          <div>
-            <Typography>Nome: Torneio Brasilia</Typography>
-            <Typography>Local: Brasilia/DF</Typography>
-            <Typography>Data: 10/10/2020</Typography>
-          </div>
+          <Typography className={classes.stylefont}>
+            Nome: Torneio Brasilia
+          </Typography>
+          <Typography className={classes.stylefont}>
+            Local: Brasilia/DF
+          </Typography>
+          <Typography className={classes.stylefont}>
+            Data: 10/10/2020
+          </Typography>
         </Container>
       </CardContent>
     </Card>

@@ -11,7 +11,12 @@ export default function Feed() {
   return (
     <Container className={classes.container}>
       <AppBar />
-      <div>
+      <div
+        style={{
+          backgroundColor: '#ffffff',
+          height: '100vh',
+        }}
+      >
         <Card />
       </div>
       <div className={classes.footer}>

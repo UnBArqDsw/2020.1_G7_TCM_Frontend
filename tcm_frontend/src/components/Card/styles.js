@@ -1,12 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles(() => ({
+export const useStyles = makeStyles((theme) => ({
   card: {
-    marginTop: '2vh',
+    marginTop: '3vh',
     alignItems: 'center',
     justifyContent: 'center',
     margin: '3vh',
-    height: '170px',
+    height: '20vh',
     background: '#e0e0e0',
   },
   avatar: {
@@ -18,10 +18,18 @@ export const useStyles = makeStyles(() => ({
     marginRight: '0',
   },
   stylecontainer: {
-    marginLeft: '13vh',
-    marginTop: '-13vh',
+    marginLeft: '1vh',
+    marginTop: '1vh',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
-  stylediv: {
-    background: '#000000',
+  stylefont: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '0.9rem',
+    },
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '2rem',
+    },
   },
 }));
