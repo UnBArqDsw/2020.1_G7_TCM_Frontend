@@ -17,4 +17,8 @@ export const useStyles = makeStyles(() => ({
     alignItems: 'center',
     background: '#ffffff',
   },
+  stylesdiv: {
+    backgroundColor: '#ffffff',
+    height: '100vh',
+  },
 }));

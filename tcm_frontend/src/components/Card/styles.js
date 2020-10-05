@@ -32,4 +32,7 @@ export const useStyles = makeStyles((theme) => ({
       fontSize: '2rem',
     },
   },
+  stylecardcontent: {
+    display: 'flex',
+  },
 }));

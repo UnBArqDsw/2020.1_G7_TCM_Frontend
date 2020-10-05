@@ -5,12 +5,12 @@ import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import { useStyles } from './styles';
 
-export default function Feed() {
+const Feed = () => {
   const classes = useStyles();
 
   return (
     <Card className={classes.card}>
-      <CardContent style={{ display: 'flex' }}>
+      <CardContent className={classes.stylecardcontent}>
         <Avatar className={classes.avatar}>LA</Avatar>
         <Container className={classes.stylecontainer}>
           <Typography className={classes.stylefont}>
@@ -26,4 +26,5 @@ export default function Feed() {
       </CardContent>
     </Card>
   );
-}
+};
+export default Feed;
