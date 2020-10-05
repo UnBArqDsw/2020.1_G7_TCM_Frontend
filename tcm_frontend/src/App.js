@@ -30,8 +30,8 @@ const App = () => {
     <>
       <MuiThemeProvider theme={theme}>
         <BrowserRouter>
-          <GlobalStyle />
           <Routes />
+          <GlobalStyle />
         </BrowserRouter>
       </MuiThemeProvider>
     </>
