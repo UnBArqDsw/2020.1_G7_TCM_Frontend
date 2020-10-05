@@ -9,7 +9,6 @@ import {
   Link,
   Grid,
   LinearProgress,
-  Hidden,
 } from '@material-ui/core';
 
 import * as Yup from 'yup';
@@ -36,7 +35,7 @@ const Login = () => {
     password: '',
   };
   return (
-    <Hidden only={['lg', 'xl']}>
+    <>
       <Grid className={classes.styleDiv}>
         <Container maxWidth="xs" className={classes.styleContainer}>
           <Grid container direction="column" className={classes.styleBox}>
@@ -101,7 +100,7 @@ const Login = () => {
           </Grid>
         </Container>
       </Grid>
-    </Hidden>
+    </>
   );
 };
 

@@ -6,7 +6,6 @@ export const useStyles = makeStyles((theme) => ({
     background: 'linear-gradient(180deg, #56C60B 0.01%, #51CCA4 56.77%)',
   },
   styleContainer: {
-    background: 'linear-gradient(180deg, #56C60B 0.01%, #51CCA4 56.77%)',
     display: 'block',
     position: 'relative',
     top: '50%',
@@ -22,14 +21,14 @@ export const useStyles = makeStyles((theme) => ({
       textAlign: 'center',
     },
     '& > :last-child': {
-      marginTop: '5vh',
+      // marginTop: '5vh',
       width: '25vh',
       height: '25vh',
       opacity: '50%',
     },
   },
   styleInputEmail: {
-    margin: '2vh 0px',
+    margin: '2px 0px',
     '& .MuiInputLabel-root': {
       color: '#fff',
     },
@@ -50,7 +49,7 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   styleInputPassword: {
-    marginBottom: '5vh',
+    marginBottom: '5%',
     '& .MuiInputLabel-root': {
       color: '#fff',
     },
@@ -73,7 +72,7 @@ export const useStyles = makeStyles((theme) => ({
   styleButton: {
     background: 'rgba(0, 0, 0, 0.4)',
     color: '#fff',
-    marginBottom: '5vh',
+    marginBottom: '5%',
   },
   styleLink: {
     color: theme.palette.secondary.main,
