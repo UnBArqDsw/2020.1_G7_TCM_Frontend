@@ -3,12 +3,18 @@ import { makeStyles } from '@material-ui/core';
 export const useStyles = makeStyles((theme) => ({
   styleDiv: {
     background: 'linear-gradient(180deg, #56C60B 0.01%, #51CCA4 56.77%)',
-    height: '100vh',
     display: 'flex',
+    height: '100%',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     color: '#fff',
+    [theme.breakpoints.down('md')]: {
+      height: '150%',
+    },
+    [theme.breakpoints.only('xs')]: {
+      height: '100%',
+    },
   },
   styleBox: {
     width: '90%',
@@ -18,13 +24,17 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   styleLogo: {
-    width: '157px',
-    height: '157px',
-    marginTop: '10vh',
+    width: '25vh',
+    height: '25vh',
+    marginTop: '5vh',
     opacity: '50%',
+    [theme.breakpoints.down('md')]: {
+      width: '40vh',
+      height: '40vh',
+    },
   },
   styleInputEmail: {
-    marginTop: '40px',
+    marginTop: '5vh',
     '& .MuiInputLabel-root': {
       color: '#fff',
     },
@@ -45,7 +55,7 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   styleInputPassword: {
-    margin: '20px 0px',
+    margin: '0px 5vh 5vh 0px',
     '& .MuiInputLabel-root': {
       color: '#fff',
     },
@@ -73,7 +83,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   styleLink: {
     '&:first-child': {
-      marginTop: '30px',
+      margin: '30px 0px',
     },
     color: theme.palette.secondary.main,
     fontSize: '1.25rem',

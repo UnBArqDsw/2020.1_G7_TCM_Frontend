@@ -5,7 +5,7 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App style={{ height: '100vh' }} />
   </React.StrictMode>,
   document.getElementById('root'),
 );

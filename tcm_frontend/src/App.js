@@ -20,9 +20,12 @@ const theme = createMuiTheme({
       secondary: '#fff',
     },
   },
+  shape: {
+    borderRadius: '5px',
+  },
 });
 
-function App() {
+const App = () => {
   return (
     <>
       <MuiThemeProvider theme={theme}>
@@ -33,6 +36,6 @@ function App() {
       </MuiThemeProvider>
     </>
   );
-}
+};
 
 export default App;
