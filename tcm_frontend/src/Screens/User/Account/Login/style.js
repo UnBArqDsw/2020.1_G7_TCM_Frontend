@@ -28,7 +28,7 @@ export const useStyles = makeStyles((theme) => ({
     height: '25vh',
     marginTop: '5vh',
     opacity: '50%',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.only('md')]: {
       width: '40vh',
       height: '40vh',
     },
