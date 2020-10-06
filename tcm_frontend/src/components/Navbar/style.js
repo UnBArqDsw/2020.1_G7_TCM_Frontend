@@ -6,9 +6,6 @@ export const makestyles = makeStyles({
     bottom: 0,
     width: '100%',
     backgroundColor: '#EAF1EB',
-    '&:only-child': {
-      backgroundColor: '#000',
-    },
   },
 
   bottomNavigationAction: {

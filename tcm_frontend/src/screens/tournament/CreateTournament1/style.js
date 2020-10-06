@@ -64,9 +64,7 @@ export const makestyles = makeStyles((theme) => ({
     },
   },
 
-  footer: {
-    marginBottom: 64,
-  },
+  footer: theme.mixins.toolbar,
 
   dateInput: {
     color: '#000',

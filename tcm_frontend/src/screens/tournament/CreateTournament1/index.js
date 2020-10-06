@@ -19,6 +19,8 @@ const CreateTournament1 = () => {
     level: '',
     blockType: '',
     playersNumber: '',
+    startDate: '',
+    finishDate: '',
   };
 
   return (
@@ -117,11 +119,11 @@ const CreateTournament1 = () => {
             <Field
               component={TextField}
               className={styles.select}
-              label="Data de nascimento"
+              label="Início"
               fullWidth
-              type="date"
+              type="startDate"
               defaultValue=""
-              name="date"
+              name="startDate"
               InputLabelProps={{
                 shrink: true,
               }}
