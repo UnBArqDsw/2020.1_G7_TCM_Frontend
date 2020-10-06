@@ -2,17 +2,13 @@ import { makeStyles } from '@material-ui/core';
 
 export const useStyles = makeStyles((theme) => ({
   styleDiv: {
-    height: '100%',
+    height: '100vh',
     background: 'linear-gradient(180deg, #56C60B 0.01%, #51CCA4 56.77%)',
   },
-  styleContainer: {
-    display: 'block',
+  styleBox: {
     position: 'relative',
     top: '50%',
     transform: 'translate(0, -50%)',
-  },
-  styleBox: {
-    alignItems: 'center',
   },
   styleRegister: {
     color: 'white',
