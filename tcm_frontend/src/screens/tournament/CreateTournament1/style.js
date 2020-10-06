@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export const makestyles = makeStyles({
+export const makestyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
     // width: '100%',
@@ -26,6 +26,7 @@ export const makestyles = makeStyles({
   formControl: {
     alignItems: 'start',
     display: 'flex',
+    margin: '2% 0px',
     flexDirection: 'column',
     justifyContent: 'center',
     borderBottom: '2px solid #000000',
@@ -36,7 +37,7 @@ export const makestyles = makeStyles({
     border: 'none',
     borderBottom: '2px solid #000000',
     backgroundColor: '#ffffff',
-    margin: '15px 0px',
+    margin: '2% 0px',
     '&:before': {
       borderColor: '#000',
     },
@@ -46,12 +47,29 @@ export const makestyles = makeStyles({
     '& .MuiInputLabel-root': {
       color: '#000',
     },
+    '& label.Mui-focused': {
+      color: '#000',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#000',
+    },
+    '& .MuiInput-underline:before': {
+      borderBottomColor: '#000',
+    },
+    '& .MuiInput-underline:hover': {
+      borderBottomColor: '#000',
+    },
+    '& .MuiInputBase-input': {
+      color: '#000',
+    },
   },
 
   footer: {
-    bottom: '0px',
-    display: 'flex',
-    position: 'absolute',
-    width: '100%',
+    marginBottom: 64,
   },
-});
+
+  dateInput: {
+    color: '#000',
+    backgroundColor: '#FF0000',
+  },
+}));

@@ -18,6 +18,7 @@ const CreateTournament1 = () => {
     age: '',
     level: '',
     blockType: '',
+    playersNumber: '',
   };
 
   return (
@@ -37,10 +38,7 @@ const CreateTournament1 = () => {
             />
 
             <FormControl className={styles.formControl}>
-              <InputLabel
-                id="demo-simple-select-label"
-                style={{ color: '#000000' }}
-              >
+              <InputLabel style={{ color: '#000000' }}>
                 Tipo de torneio
               </InputLabel>
               <Field
@@ -53,59 +51,85 @@ const CreateTournament1 = () => {
               </Field>
             </FormControl>
 
+            <FormControl className={styles.formControl}>
+              <InputLabel style={{ color: '#000000' }}>Estado</InputLabel>
+              <Field name="state" label="Estado" fullWidth component={Select}>
+                <MenuItem value="DF">DF</MenuItem>
+              </Field>
+            </FormControl>
+
+            <FormControl className={styles.formControl}>
+              <InputLabel style={{ color: '#000000' }}>Cidade</InputLabel>
+              <Field name="city" label="Cidade" fullWidth component={Select}>
+                <MenuItem value="Brasília">Brasília</MenuItem>
+              </Field>
+            </FormControl>
+
+            <FormControl className={styles.formControl}>
+              <InputLabel style={{ color: '#000000' }}>Faixa etária</InputLabel>
+              <Field
+                name="age"
+                label="Faixa etária"
+                fullWidth
+                component={Select}
+              >
+                <MenuItem value="18 - 55">18 - 55</MenuItem>
+              </Field>
+            </FormControl>
+
+            <FormControl className={styles.formControl}>
+              <InputLabel style={{ color: '#000000' }}>
+                Nível do torneio
+              </InputLabel>
+              <Field
+                name="level"
+                label="Nível do torneio"
+                fullWidth
+                component={Select}
+              >
+                <MenuItem value="Brasília">Brasília</MenuItem>
+              </Field>
+            </FormControl>
+
+            <FormControl className={styles.formControl}>
+              <InputLabel style={{ color: '#000000' }}>
+                Tipo de quadra
+              </InputLabel>
+              <Field
+                name="blockType"
+                label="Tipo de quadra"
+                fullWidth
+                component={Select}
+              >
+                <MenuItem value="Grama">Grama</MenuItem>
+              </Field>
+            </FormControl>
+
+            <FormControl className={styles.formControl}>
+              <InputLabel style={{ color: '#000000' }}>
+                Nũmero de jogadores
+              </InputLabel>
+              <Field name="playersNumber" fullWidth component={Select}>
+                <MenuItem value="8">8</MenuItem>
+              </Field>
+            </FormControl>
+
             <Field
-              as="select"
-              name="state"
-              placeholder="Estado"
-              fullWidth
-              type="text"
+              component={TextField}
               className={styles.select}
-            >
-              <option value="red">Estado</option>
-            </Field>
-            <Field
-              as="select"
-              name="city"
-              placeholder="Cidade"
+              label="Data de nascimento"
               fullWidth
-              type="text"
-              className={styles.select}
-            >
-              <option value="red">Cidade</option>
-            </Field>
-            <Field
-              as="select"
-              name="age"
-              placeholder="Faixa etária"
-              fullWidth
-              type="text"
-              className={styles.select}
-            >
-              <option value="red">Faixa etária</option>
-            </Field>
-            <Field
-              as="select"
-              name="level"
-              placeholder="Nível do torneio"
-              fullWidth
-              type="text"
-              className={styles.select}
-            >
-              <option value="red">Nível do torneio</option>
-            </Field>
-            <Field
-              as="select"
-              name="blockType"
-              placeholder="Tipo de quadra"
-              fullWidth
-              type="text"
-              className={styles.select}
-            >
-              <option value="red">Tipo de quadra</option>
-            </Field>
+              type="date"
+              defaultValue=""
+              name="date"
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
           </Form>
         </Formik>
       </Container>
+      <div className={styles.footer} />
       <Navbar />
     </>
   );

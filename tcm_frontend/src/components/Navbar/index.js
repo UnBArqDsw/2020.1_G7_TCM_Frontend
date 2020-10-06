@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  BottomNavigation,
-  BottomNavigationAction,
-  InputLabel,
-} from '@material-ui/core';
+import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 import { Home, Search, AddCircle, EmojiEvents } from '@material-ui/icons';
 
 import { makestyles } from './style';
