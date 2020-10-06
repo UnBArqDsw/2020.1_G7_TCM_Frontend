@@ -3,7 +3,7 @@ import { Formik, Field, Form } from 'formik';
 import { TextField, Select } from 'formik-material-ui';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
-import { Container, FormControl } from '@material-ui/core';
+import { Box, Container, FormControl } from '@material-ui/core';
 import Appbar from '../../../components/Appbar';
 import Navbar from '../../../components/Navbar';
 import { makestyles } from './style';
@@ -116,18 +116,31 @@ const CreateTournament1 = () => {
               </Field>
             </FormControl>
 
-            <Field
-              component={TextField}
-              className={styles.select}
-              label="Início"
-              fullWidth
-              type="startDate"
-              defaultValue=""
-              name="startDate"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
+            <Box className={styles.dateBox}>
+              <Field
+                component={TextField}
+                className={styles.select}
+                label="Início"
+                type="date"
+                defaultValue=""
+                name="startDate"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+
+              <Field
+                component={TextField}
+                className={styles.select}
+                label="Término"
+                type="date"
+                defaultValue=""
+                name="finishDate"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            </Box>
           </Form>
         </Formik>
       </Container>

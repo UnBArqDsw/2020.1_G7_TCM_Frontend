@@ -64,10 +64,23 @@ export const makestyles = makeStyles((theme) => ({
     },
   },
 
+  selectDate: {},
+
   footer: theme.mixins.toolbar,
 
   dateInput: {
     color: '#000',
     backgroundColor: '#FF0000',
+  },
+
+  dateBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    '& > :firstChild': {
+      width: '45%',
+      marginRight: '800px',
+    },
   },
 }));
