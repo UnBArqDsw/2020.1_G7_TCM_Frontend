@@ -7,6 +7,8 @@ import {
   Grid,
   LinearProgress,
   MenuItem,
+  FormControl,
+  InputLabel,
 } from '@material-ui/core';
 
 import * as Yup from 'yup';
@@ -51,7 +53,7 @@ const SignUp = () => {
   return (
     <>
       <Grid className={classes.styleDiv}>
-        <Container maxWidth="xs" className={classes.styleContainer}>
+        <Container maxWidth="sm" className={classes.styleContainer}>
           <Grid container direction="column" className={classes.styleBox}>
             <Grid className={classes.styleRegister}>
               <Typography variant="h4">Registro</Typography>
@@ -109,6 +111,7 @@ const SignUp = () => {
                   />
 
                   <Field
+                    style={{ marginTop: '15px' }}
                     component={TextField}
                     className={classes.styleInput}
                     label="Data de nascimento"
@@ -120,18 +123,20 @@ const SignUp = () => {
                       shrink: true,
                     }}
                   />
-
-                  <Field
-                    className={classes.styleSelect}
-                    component={Select}
-                    type="select"
-                    name="nivel"
-                    defaultValue="Amador"
-                  >
-                    <MenuItem value="Amador">Amador</MenuItem>
-                    <MenuItem value="Intermediário">Intermediário</MenuItem>
-                    <MenuItem value="Profissional">Profissional</MenuItem>
-                  </Field>
+                  <FormControl className={classes.styleLevel}>
+                    <InputLabel>Nivel do Jogador</InputLabel>
+                    <Field
+                      component={Select}
+                      type="select"
+                      name="nivel"
+                      className={classes.styleLevelSelect}
+                      variant="standard"
+                    >
+                      <MenuItem value="Amador">Amador</MenuItem>
+                      <MenuItem value="Intermediário">Intermediário</MenuItem>
+                      <MenuItem value="Profissional">Profissional</MenuItem>
+                    </Field>
+                  </FormControl>
                   {isSubmitting && <LinearProgress />}
                   <br />
                   <Button

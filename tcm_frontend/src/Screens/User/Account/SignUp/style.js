@@ -15,12 +15,11 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   styleRegister: {
-    marginTop: '10%',
     color: 'white',
     textAlign: 'center',
   },
   styleInput: {
-    marginBottom: '5%',
+    marginTop: '10px',
     '& .MuiInputLabel-root': {
       color: '#fff',
     },
@@ -40,35 +39,32 @@ export const useStyles = makeStyles((theme) => ({
       color: theme.palette.text.secondary,
     },
   },
-  styleSelect: {
+  styleLevel: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
     width: '100%',
-    marginBottom: '5px',
-    '& .MuiInputLabel-root': {
+    margin: '10px 0px 20px 0px',
+
+    '& .MuiFormLabel-root': {
       color: '#fff',
     },
-    '& label.Mui-focused': {
-      color: '#fff',
+  },
+  styleLevelSelect: {
+    width: '100%',
+    '&': { color: 'white' },
+    '&:before': {
+      height: '1px',
+      backgroundColor: 'white',
     },
-    '& ..MuiSelect-outlined:after': {
-      borderBottom: '2px solid #fff',
-    },
-    '& ..MuiSelect-outlined:before': {
-      borderBottom: '2px solid #fff',
-    },
-    '& ..MuiSelect-outlined:hover': {
-      borderBottom: '2px solid #fff',
-    },
-    '& .MuiInputBase-input': {
-      color: theme.palette.text.secondary,
+    '&:after': {
+      height: '1px',
+      backgroundColor: 'white',
     },
   },
   styleButton: {
     background: 'rgba(0, 0, 0, 0.4)',
     color: '#fff',
     marginBottom: '5%',
-  },
-  styleLink: {
-    color: theme.palette.secondary.main,
-    fontSize: '1.25rem',
   },
 }));
