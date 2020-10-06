@@ -40,11 +40,11 @@ function Navbar() {
       <BottomNavigationAction
         className="bottom-navigation-icon"
         name="my-tournaments"
-        label={
+        label={(
           <InputLabel className={styles.label_my_tournaments}>
             Meus Torneios
           </InputLabel>
-        }
+        )}
         icon={<EmojiEvents className={styles.icon} />}
       />
     </BottomNavigation>

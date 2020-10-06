@@ -1,26 +1,9 @@
 import React from 'react';
 import { Formik, Field, Form } from 'formik';
-import { makeStyles } from '@material-ui/core/styles';
 import Appbar from '../../../components/Appbar';
 import Navbar from '../../../components/Navbar';
 
-const makestyles = makeStyles({
-  container: {
-    display: 'flex',
-    width: '100%',
-    flexDirection: 'column',
-    padding: '0',
-    margin: '0',
-    backgroundColor: '#ffffff',
-  },
-
-  footer: {
-    bottom: '0px',
-    display: 'flex',
-    position: 'absolute',
-    width: '100%',
-  },
-});
+import { makestyles } from './style';
 
 const CreateTournament1 = () => {
   const styles = makestyles();
@@ -28,16 +11,90 @@ const CreateTournament1 = () => {
   return (
     <div className={styles.container}>
       <Appbar />
-      <p>Cadastre seu torneio</p>
-      <Formik className="formik-form">
-        <Form>
-          <Field name="name" placeholder="Nome do torneio" type="text" />
-          <Field name="type" placeholder="Tipo" type="text" />
-          <Field name="state" placeholder="Estado" type="text" />
-          <Field name="city" placeholder="Cidade" type="text" />
-          <Field name="age" placeholder="Faixa Etária" type="text" />
-          <Field name="level" placeholder="Nível do torneio" type="text" />
-          <Field name="block_type" placeholder="Tipo de quadra" type="text" />
+      <p className={styles.title}>Cadastre seu torneio</p>
+      <Formik>
+        <Form className={styles.formik_form}>
+          <Field
+            name="name"
+            placeholder="Nome do torneio"
+            type="text"
+            className={styles.select}
+          />
+          <Field
+            as="select"
+            name="type"
+            placeholder="Tipo"
+            type="text"
+            className={styles.select}
+          >
+            <option value="red">Tipo</option>
+          </Field>
+          <Field
+            as="select"
+            name="state"
+            placeholder="Estado"
+            type="text"
+            className={styles.select}
+          >
+            <option value="red">Estado</option>
+          </Field>
+          <Field
+            as="select"
+            name="city"
+            placeholder="Cidade"
+            type="text"
+            className={styles.select}
+          >
+            <option value="red">Cidade</option>
+          </Field>
+          <Field
+            as="select"
+            name="age"
+            placeholder="Faixa etária"
+            type="text"
+            className={styles.select}
+          >
+            <option value="red">Faixa etária</option>
+          </Field>
+          <Field
+            as="select"
+            name="level"
+            placeholder="Nível do torneio"
+            type="text"
+            className={styles.select}
+          >
+            <option value="red">Nível do torneio</option>
+          </Field>
+          <Field
+            as="select"
+            name="block-type"
+            placeholder="Tipo de quadra"
+            type="text"
+            className={styles.select}
+          >
+            <option value="red">Tipo de quadra</option>
+          </Field>
+          {/* <Field as="select" name="state" placeholder="Estado" type="text" />
+          <Field as="select" name="city" placeholder="Cidade" type="text" />
+          <Field
+            as="select"
+            name="age"
+            placeholder="Faixa Etária"
+            type="text"
+          />
+          <Field
+            as="select"
+            name="level"
+            placeholder="Nível do torneio"
+            type="text"
+          />
+          <Field
+            as="select"
+            name="block_type"
+            placeholder="Tipo de quadra"
+            type="text"
+          />
+          <Field as="select" /> */}
         </Form>
       </Formik>
       <div className={styles.footer}>
