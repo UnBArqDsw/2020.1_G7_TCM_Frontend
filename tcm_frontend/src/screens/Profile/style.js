@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
   styleDiv: {
@@ -28,7 +29,6 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   styleLink: {
-    color: '#000000',
     marginTop: '1%',
     textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
@@ -47,21 +47,27 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     width: '100%',
     margin: '10px 0px 20px 0px',
-
-    '& .MuiFormLabel-root': {
-      color: '#fff',
-    },
   },
+
   styleLevelSelect: {
     width: '100%',
-    '&': { color: '#000000' },
-    '&:before': {
-      height: '1px',
-      backgroundColor: '#000000',
-    },
-    '&:after': {
-      height: '1px',
-      backgroundColor: '#000000',
-    },
+  },
+  styleInputDate: {
+    marginTop: '3%',
   },
 }));
+
+export const muiTheme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#000000',
+    },
+    secondary: {
+      main: '#000000',
+    },
+    background: {
+      paper: '#fff',
+      default: '#fff',
+    },
+  },
+});

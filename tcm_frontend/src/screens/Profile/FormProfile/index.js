@@ -6,13 +6,14 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
+  ThemeProvider,
 } from '@material-ui/core';
 
 import * as Yup from 'yup';
 import { Formik, Form, Field } from 'formik';
 
 import { TextField, Select } from 'formik-material-ui';
-import { useStyles } from '../style';
+import { useStyles, muiTheme } from '../style';
 
 const contactSchema = Yup.object().shape({});
 
@@ -32,51 +33,55 @@ const FormProfile = () => {
       >
         {({ submitForm, isSubmitting }) => (
           <Form>
-            <Field
-              component={TextField}
-              className={classes.styleInputName}
-              name="nome"
-              type="nome"
-              label="nome"
-              fullWidth
-            />
-            <br />
-            <FormControl className={classes.styleLevel}>
-              <InputLabel>Nivel do Jogador</InputLabel>
+            <ThemeProvider theme={muiTheme}>
               <Field
-                component={Select}
-                type="select"
-                name="nivel"
-                className={classes.styleLevelSelect}
-                variant="standard"
-              >
-                <MenuItem value="Amador">Amador</MenuItem>
-                <MenuItem value="Intermediário">Intermediário</MenuItem>
-                <MenuItem value="Profissional">Profissional</MenuItem>
-              </Field>
-            </FormControl>
-            <Field
-              component={TextField}
-              className={classes.styleInputUsername}
-              type="username"
-              label="Username"
-              name="username"
-              fullWidth
-            />
-            <Field
-              component={TextField}
-              className={classes.styleInputDate}
-              label="Data de nascimento"
-              fullWidth
-              type="date"
-              defaultValue=""
-              name="date"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-            {isSubmitting && <LinearProgress />}
-            <br />
+                component={TextField}
+                color="secondary"
+                name="nome"
+                type="nome"
+                label="Nome"
+                fullWidth
+              />
+              <br />
+              <Field
+                component={TextField}
+                className={classes.styleInputUsername}
+                type="username"
+                label="Username"
+                name="Username"
+                fullWidth
+              />
+              <Field
+                component={TextField}
+                className={classes.styleInputDate}
+                label="Data de nascimento"
+                fullWidth
+                type="date"
+                defaultValue=""
+                name="date"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+              {isSubmitting && <LinearProgress />}
+              <br />
+              <FormControl className={classes.styleLevel}>
+                <InputLabel className={classes.InputLabel}>
+                  Nivel do Jogador
+                </InputLabel>
+                <Field
+                  component={Select}
+                  type="select"
+                  name="nivel"
+                  className={classes.styleLevelSelect}
+                  variant="standard"
+                >
+                  <MenuItem value="Amador">Amador</MenuItem>
+                  <MenuItem value="Intermediário">Intermediário</MenuItem>
+                  <MenuItem value="Profissional">Profissional</MenuItem>
+                </Field>
+              </FormControl>
+            </ThemeProvider>
           </Form>
         )}
       </Formik>
