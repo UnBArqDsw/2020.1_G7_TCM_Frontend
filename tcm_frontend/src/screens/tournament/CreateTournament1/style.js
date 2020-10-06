@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export const makestyles = makeStyles({
   container: {
     display: 'flex',
-    width: '100%',
+    // width: '100%',
     flexDirection: 'column',
     padding: '0',
     margin: '0',
@@ -23,20 +23,30 @@ export const makestyles = makeStyles({
     flexDirection: 'column',
   },
 
+  formControl: {
+    alignItems: 'start',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    borderBottom: '2px solid #000000',
+  },
+
   select: {
-    marginLeft: '35px',
-    marginRight: '35px',
-    marginTop: '35px',
     fontSize: '18px',
     border: 'none',
     borderBottom: '2px solid #000000',
     backgroundColor: '#ffffff',
+    margin: '15px 0px',
+    '&:before': {
+      borderColor: '#000',
+    },
+    '&:after': {
+      borderColor: '#000',
+    },
+    '& .MuiInputLabel-root': {
+      color: '#000',
+    },
   },
-
-  //   select_text: {
-  //     fontSize: '20px',
-  //     color: '#FF0000',
-  //   },
 
   footer: {
     bottom: '0px',

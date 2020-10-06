@@ -9,43 +9,33 @@ import { Home, Search, AddCircle, EmojiEvents } from '@material-ui/icons';
 import { makestyles } from './style';
 
 function Navbar() {
-  const styles = makestyles();
+  const classes = makestyles();
 
   return (
-    <BottomNavigation className={styles.bottomNavigation} showLabels>
+    <BottomNavigation className={classes.root} showLabels>
       <BottomNavigationAction
-        className="bottom-navigation-icon"
         name="feed"
-        label={<InputLabel className={styles.label_feed}>Feed</InputLabel>}
-        icon={<Home className={styles.icon} />}
+        className={classes.bottomNavigationAction}
+        label="Feed"
+        icon={<Home className={classes.icon} />}
       />
       <BottomNavigationAction
-        className="bottom-navigation-icon"
         name="search"
-        label={
-          <InputLabel className={styles.label_search}>Pesquisa</InputLabel>
-        }
-        icon={<Search className={styles.icon} />}
+        className={classes.bottomNavigationAction}
+        label="Pesquisa"
+        icon={<Search className={classes.icon} />}
       />
       <BottomNavigationAction
-        className="bottom-navigation-icon"
         name="create-tournament"
-        label={(
-          <InputLabel className={styles.label_create_tournament}>
-            Criar Torneio
-          </InputLabel>
-        )}
-        icon={<AddCircle className={styles.icon} />}
+        className={classes.bottomNavigationAction}
+        label="Criar Torneio"
+        icon={<AddCircle className={classes.icon} />}
       />
       <BottomNavigationAction
-        className="bottom-navigation-icon"
+        className={classes.bottomNavigationAction}
         name="my-tournaments"
-        label={(
-          <InputLabel className={styles.label_my_tournaments}>
-            Meus Torneios
-          </InputLabel>
-        )}
-        icon={<EmojiEvents className={styles.icon} />}
+        label="Torneios"
+        icon={<EmojiEvents className={classes.icon} />}
       />
     </BottomNavigation>
   );
