@@ -34,7 +34,7 @@ export default function Appbar() {
 
   return (
     <div className={classes.header}>
-      <AppBar className={classes.appBar} position="static">
+      <AppBar className={classes.appBar} position="fixed">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             TCM

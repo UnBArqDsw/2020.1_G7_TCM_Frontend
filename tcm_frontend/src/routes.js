@@ -1,9 +1,11 @@
 import React from 'react';
 
 import { Switch, Route } from 'react-router-dom';
-import Login from './Screens/User/Account/Login';
-import SignUp from './Screens/User/Account/SignUp';
-import Profile from './Screens/Profile';
+
+import Login from './screens/user/account/Login';
+import SignUp from './screens/user/account/SignUp';
+import Feed from './screens/Feed';
+import Profile from './screens/Profile';
 
 const Routes = () => {
   return (
@@ -11,6 +13,7 @@ const Routes = () => {
       <Route exact path="/" component={Login} />
       <Route path="/signup" component={SignUp} />
       <Route path="/profile" component={Profile} />
+      <Route path="/feed" component={Feed} />
     </Switch>
   );
 };

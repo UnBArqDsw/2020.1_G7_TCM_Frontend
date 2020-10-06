@@ -22,7 +22,7 @@ const Profile = () => {
                     Editar foto
                 </Link>
             </div>
-            <FormProfile />
+            <FormProfile className={classes.form}/>
         </Container>
     );
 }
