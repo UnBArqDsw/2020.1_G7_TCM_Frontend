@@ -6,6 +6,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { Box, Container, FormControl } from '@material-ui/core';
 import Appbar from '../../../components/Appbar';
 import Navbar from '../../../components/Navbar';
+import Buttonbox from '../../../components/Buttonbox';
 import { makestyles } from './style';
 
 const CreateTournament1 = () => {
@@ -143,6 +144,7 @@ const CreateTournament1 = () => {
             </Box>
           </Form>
         </Formik>
+        <Buttonbox />
       </Container>
       <div className={styles.footer} />
       <Navbar />
