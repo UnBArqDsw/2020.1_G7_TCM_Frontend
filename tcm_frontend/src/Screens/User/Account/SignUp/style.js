@@ -6,6 +6,17 @@ export const Wrapper = styled.div`
   background: linear-gradient(180deg, #56c60b 0.01%, #51cca4 56.77%);
   flex-direction: column;
   align-items: center;
+  @media screen and (device-aspect-ratio: 40/71) {
+    height: 115vh;
+  }
+  @media screen and (device-aspect-ratio: 2/3) {
+    height: 135vh;
+  }
+  orientation: landscape;
+
+  @media only screen and (min-device-width: 280px) and (max-device-width: 830px) and (orientation: landscape) {
+    height: 200vh;
+  }
 `;
 
 export const Container = styled.div`
