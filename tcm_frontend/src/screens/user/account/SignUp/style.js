@@ -9,11 +9,14 @@ export const Wrapper = styled.div`
   @media screen and (device-aspect-ratio: 40/71) {
     height: 115vh;
   }
+
+  @media only screen and (min-device-width: 280px) and (max-device-width: 578px) {
+    height: 115vh;
+  }
+
   @media screen and (device-aspect-ratio: 2/3) {
     height: 135vh;
   }
-  orientation: landscape;
-
   @media only screen and (min-device-width: 280px) and (max-device-width: 578px) and (orientation: landscape) {
     height: 200vh;
   }
