@@ -31,9 +31,10 @@ const contactSchema = Yup.object().shape({
     .required('Email é obrigatório'),
   password: Yup.string()
     .required('Por favor digite sua senha')
-    .matches(/^[a-z0-9]{3,15}$/, 'Senha deve conter pelo menos 8 digitos'),
+    .matches(/^[a-z0-9]{3,15}$/, 'Senha deve conter pelo menos 3 digitos'),
   confirmPassword: Yup.string()
     .required('Por favor confirme sua senha')
+    .matches(/^[a-z0-9]{3,15}$/, 'Senha deve conter pelo menos 3 digitos')
     .when('password', {
       is: (password) => !!(password && password.length > 0),
       then: Yup.string().oneOf([Yup.ref('password')], 'Senhas não coincidem'),
@@ -113,7 +114,6 @@ const SignUp = () => {
                   label="Data de nascimento"
                   fullWidth
                   type="date"
-                  defaultValue=""
                   name="date"
                   InputLabelProps={{
                     shrink: true,

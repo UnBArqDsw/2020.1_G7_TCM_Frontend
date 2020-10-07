@@ -14,8 +14,14 @@ export const Wrapper = styled.div`
   }
   orientation: landscape;
 
-  @media only screen and (min-device-width: 280px) and (max-device-width: 830px) and (orientation: landscape) {
+  @media only screen and (min-device-width: 280px) and (max-device-width: 578px) and (orientation: landscape) {
     height: 200vh;
+  }
+  @media only screen and (min-device-width: 579px) and (max-device-width: 670px) and (orientation: landscape) {
+    height: 170vh;
+  }
+  @media only screen and (min-device-width: 671px) and (max-device-width: 900px) and (orientation: landscape) {
+    height: 160vh;
   }
 `;
 
