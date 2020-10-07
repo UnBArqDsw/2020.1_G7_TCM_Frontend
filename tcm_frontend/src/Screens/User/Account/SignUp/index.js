@@ -4,9 +4,6 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import {
   Button,
-  Container,
-  Typography,
-  Grid,
   LinearProgress,
   MenuItem,
   FormControl,
@@ -17,7 +14,7 @@ import * as Yup from 'yup';
 import { Formik, Form, Field } from 'formik';
 
 import { TextField, Select } from 'formik-material-ui';
-import { useStyles } from './style';
+import { Wrapper, Registro, Container } from './style';
 
 const contactSchema = Yup.object().shape({
   username: Yup.string('Username Inválido')
@@ -44,7 +41,6 @@ const contactSchema = Yup.object().shape({
 });
 
 const SignUp = () => {
-  const classes = useStyles();
   const initialValues = {
     username: '',
     date: '',
@@ -54,26 +50,18 @@ const SignUp = () => {
     confirmPassword: '',
   };
   return (
-    <Container maxWidth="xs" className={classes.styleDiv}>
-      <Grid
-        alignItems="center"
-        container
-        direction="column"
-        className={classes.styleBox}
-      >
-        <Grid className={classes.styleRegister}>
-          <Typography variant="h4">Registro</Typography>
-        </Grid>
+    <Wrapper>
+      <Container>
+        <Registro variant="h4">Registro</Registro>
         <Formik
           initialValues={initialValues}
           validationSchema={contactSchema}
           onSubmit={() => {}}
         >
           {({ submitForm, isSubmitting }) => (
-            <Form style={{ width: '90%' }}>
+            <Form>
               <Field
                 component={TextField}
-                className={classes.styleInput}
                 name="username"
                 type="username"
                 label="Username"
@@ -82,7 +70,6 @@ const SignUp = () => {
               />
               <Field
                 component={TextField}
-                className={classes.styleInput}
                 name="name"
                 type="name"
                 label="Nome Completo"
@@ -91,7 +78,6 @@ const SignUp = () => {
               />
               <Field
                 component={TextField}
-                className={classes.styleInput}
                 name="email"
                 type="email"
                 label="Email"
@@ -101,7 +87,6 @@ const SignUp = () => {
               <br />
               <Field
                 component={TextField}
-                className={classes.styleInput}
                 type="password"
                 label="Senha"
                 name="password"
@@ -109,7 +94,6 @@ const SignUp = () => {
               />
               <Field
                 component={TextField}
-                className={classes.styleInput}
                 type="password"
                 label="Confirmar senha"
                 name="confirmPassword"
@@ -117,9 +101,7 @@ const SignUp = () => {
               />
 
               <Field
-                style={{ marginTop: '15px' }}
                 component={TextField}
-                className={classes.styleInput}
                 label="Data de nascimento"
                 fullWidth
                 type="date"
@@ -129,13 +111,12 @@ const SignUp = () => {
                   shrink: true,
                 }}
               />
-              <FormControl className={classes.styleLevel}>
+              <FormControl>
                 <InputLabel>Nivel do Jogador</InputLabel>
                 <Field
                   component={Select}
                   type="select"
                   name="nivel"
-                  className={classes.styleLevelSelect}
                   variant="standard"
                 >
                   <MenuItem value="Amador">Amador</MenuItem>
@@ -146,7 +127,6 @@ const SignUp = () => {
               {isSubmitting && <LinearProgress />}
               <br />
               <Button
-                className={classes.styleButton}
                 variant="contained"
                 color="primary"
                 onClick={submitForm}
@@ -156,7 +136,6 @@ const SignUp = () => {
                 Cadastrar
               </Button>
               <Button
-                className={classes.styleButton}
                 variant="contained"
                 color="primary"
                 to="/"
@@ -169,8 +148,8 @@ const SignUp = () => {
             </Form>
           )}
         </Formik>
-      </Grid>
-    </Container>
+      </Container>
+    </Wrapper>
   );
 };
 export default SignUp;
