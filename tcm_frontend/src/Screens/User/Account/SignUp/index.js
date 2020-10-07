@@ -8,13 +8,14 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
+  ThemeProvider,
 } from '@material-ui/core';
 
 import * as Yup from 'yup';
 import { Formik, Form, Field } from 'formik';
 
 import { TextField, Select } from 'formik-material-ui';
-import { Wrapper, Registro, Container } from './style';
+import { Wrapper, Registro, Container, theme, useStyles } from './style';
 
 const contactSchema = Yup.object().shape({
   username: Yup.string('Username Inválido')
@@ -41,6 +42,7 @@ const contactSchema = Yup.object().shape({
 });
 
 const SignUp = () => {
+  const classes = useStyles();
   const initialValues = {
     username: '',
     date: '',
@@ -53,101 +55,107 @@ const SignUp = () => {
     <Wrapper>
       <Container>
         <Registro variant="h4">Registro</Registro>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={contactSchema}
-          onSubmit={() => {}}
-        >
-          {({ submitForm, isSubmitting }) => (
-            <Form>
-              <Field
-                component={TextField}
-                name="username"
-                type="username"
-                label="Username"
-                inputProps={{ 'data-testid': 'username' }}
-                fullWidth
-              />
-              <Field
-                component={TextField}
-                name="name"
-                type="name"
-                label="Nome Completo"
-                inputProps={{ 'data-testid': 'name' }}
-                fullWidth
-              />
-              <Field
-                component={TextField}
-                name="email"
-                type="email"
-                label="Email"
-                inputProps={{ 'data-testid': 'email' }}
-                fullWidth
-              />
-              <br />
-              <Field
-                component={TextField}
-                type="password"
-                label="Senha"
-                name="password"
-                fullWidth
-              />
-              <Field
-                component={TextField}
-                type="password"
-                label="Confirmar senha"
-                name="confirmPassword"
-                fullWidth
-              />
-
-              <Field
-                component={TextField}
-                label="Data de nascimento"
-                fullWidth
-                type="date"
-                defaultValue=""
-                name="date"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-              <FormControl>
-                <InputLabel>Nivel do Jogador</InputLabel>
+        <ThemeProvider theme={theme}>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={contactSchema}
+            onSubmit={() => {}}
+          >
+            {({ submitForm, isSubmitting }) => (
+              <Form>
                 <Field
-                  component={Select}
-                  type="select"
-                  name="nivel"
-                  variant="standard"
+                  color="primary"
+                  component={TextField}
+                  name="username"
+                  type="username"
+                  label="Username"
+                  inputProps={{ 'data-testid': 'username' }}
+                  fullWidth
+                />
+                <Field
+                  component={TextField}
+                  name="name"
+                  type="name"
+                  label="Nome Completo"
+                  inputProps={{ 'data-testid': 'name' }}
+                  fullWidth
+                />
+                <Field
+                  component={TextField}
+                  name="email"
+                  type="email"
+                  label="Email"
+                  inputProps={{ 'data-testid': 'email' }}
+                  fullWidth
+                />
+                <br />
+                <Field
+                  component={TextField}
+                  type="password"
+                  label="Senha"
+                  name="password"
+                  fullWidth
+                />
+                <Field
+                  component={TextField}
+                  type="password"
+                  label="Confirmar senha"
+                  name="confirmPassword"
+                  fullWidth
+                />
+
+                <Field
+                  component={TextField}
+                  label="Data de nascimento"
+                  fullWidth
+                  type="date"
+                  defaultValue=""
+                  name="date"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+                <FormControl className={classes.styleLevel}>
+                  <InputLabel>Nivel do Jogador</InputLabel>
+                  <Field
+                    component={Select}
+                    type="select"
+                    name="nivel"
+                    variant="standard"
+                    style={{ width: '100%' }}
+                  >
+                    <MenuItem value="Amador">Amador</MenuItem>
+                    <MenuItem value="Intermediário">Intermediário</MenuItem>
+                    <MenuItem value="Profissional">Profissional</MenuItem>
+                  </Field>
+                </FormControl>
+                {isSubmitting && <LinearProgress />}
+                <br />
+                <Button
+                  className={classes.styleButton}
+                  variant="contained"
+                  color="secondary"
+                  onClick={submitForm}
+                  data-testid="entrar"
+                  fullWidth
                 >
-                  <MenuItem value="Amador">Amador</MenuItem>
-                  <MenuItem value="Intermediário">Intermediário</MenuItem>
-                  <MenuItem value="Profissional">Profissional</MenuItem>
-                </Field>
-              </FormControl>
-              {isSubmitting && <LinearProgress />}
-              <br />
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={submitForm}
-                data-testid="entrar"
-                fullWidth
-              >
-                Cadastrar
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                to="/"
-                component={RouterLink}
-                data-testid="entrar"
-                fullWidth
-              >
-                Voltar
-              </Button>
-            </Form>
-          )}
-        </Formik>
+                  Cadastrar
+                </Button>
+                <Button
+                  className={classes.styleButton}
+                  variant="contained"
+                  color="secondary"
+                  to="/"
+                  component={RouterLink}
+                  data-testid="entrar"
+                  fullWidth
+                >
+                  Voltar
+                </Button>
+              </Form>
+            )}
+          </Formik>
+        </ThemeProvider>
       </Container>
     </Wrapper>
   );
