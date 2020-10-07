@@ -21,11 +21,11 @@ const contactSchema = Yup.object().shape({
   username: Yup.string('Username Inválido')
     .required('Username é obrigatório')
     .min(3, 'Deve conter pelo menos 3 caracteres')
-    .matches(/^ [0-9a-zA-Z]+/, 'Não utilize caracteres epeciais'),
+    .matches(/^[0-9a-zA-Z][0-9a-zA-Z]*$/, 'Não utilize caracteres epeciais'),
   name: Yup.string('Nome Inválido')
     .required('Nome é obrigatório')
     .min(3, 'Deve conter pelo menos 3 caracteres')
-    .matches(/^[a-z]$/, 'O nome deve possuir apenas letras'),
+    .matches(/^[a-zA-Z ][a-zA-Z ]*$/, 'O nome deve possuir apenas letras'),
   email: Yup.string()
     .email('Email não é valido')
     .required('Email é obrigatório'),
@@ -39,6 +39,7 @@ const contactSchema = Yup.object().shape({
       then: Yup.string().oneOf([Yup.ref('password')], 'Senhas não coincidem'),
     }),
   date: Yup.date().required('Data de Nascimento é requirida'),
+  level: Yup.string().required('Nivel é requirido'),
 });
 
 const SignUp = () => {
@@ -50,6 +51,7 @@ const SignUp = () => {
     email: '',
     password: '',
     confirmPassword: '',
+    level: '',
   };
   return (
     <Wrapper>
@@ -59,7 +61,9 @@ const SignUp = () => {
           <Formik
             initialValues={initialValues}
             validationSchema={contactSchema}
-            onSubmit={() => {}}
+            onSubmit={(values) => {
+              console.log(values);
+            }}
           >
             {({ submitForm, isSubmitting }) => (
               <Form>
@@ -120,9 +124,9 @@ const SignUp = () => {
                   <Field
                     component={Select}
                     type="select"
-                    name="nivel"
                     variant="standard"
                     style={{ width: '100%' }}
+                    name="level"
                   >
                     <MenuItem value="Amador">Amador</MenuItem>
                     <MenuItem value="Intermediário">Intermediário</MenuItem>
