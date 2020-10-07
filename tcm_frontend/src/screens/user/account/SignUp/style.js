@@ -42,7 +42,7 @@ export const Registro = styled(Typography)`
   color: #fff;
 `;
 
-export const useStyles = makeStyles((theme) => ({
+export const useStyles = makeStyles(() => ({
   styleButton: {
     marginTop: '10px',
   },

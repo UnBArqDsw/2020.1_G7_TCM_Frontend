@@ -62,9 +62,7 @@ const SignUp = () => {
           <Formik
             initialValues={initialValues}
             validationSchema={contactSchema}
-            onSubmit={(values) => {
-              console.log(values);
-            }}
+            onSubmit={() => {}}
           >
             {({ submitForm, isSubmitting, dirty, isValid }) => (
               <Form>
