@@ -40,7 +40,7 @@ const contactSchema = Yup.object().shape({
       then: Yup.string().oneOf([Yup.ref('password')], 'Senhas não coincidem'),
     }),
   date: Yup.date().required('Data de Nascimento é requirida'),
-  level: Yup.string().required('Nivel é requirido'),
+  level: Yup.string().required('Nível é obrigatório'),
 });
 
 const SignUp = () => {
@@ -66,7 +66,7 @@ const SignUp = () => {
               console.log(values);
             }}
           >
-            {({ submitForm, isSubmitting }) => (
+            {({ submitForm, isSubmitting, dirty, isValid }) => (
               <Form>
                 <Field
                   color="primary"
@@ -108,7 +108,6 @@ const SignUp = () => {
                   name="confirmPassword"
                   fullWidth
                 />
-
                 <Field
                   component={TextField}
                   label="Data de nascimento"
@@ -119,7 +118,10 @@ const SignUp = () => {
                     shrink: true,
                   }}
                 />
-                <FormControl className={classes.styleLevel}>
+                <FormControl
+                  htmlFor="age-simple"
+                  className={classes.styleLevel}
+                >
                   <InputLabel>Nivel do Jogador</InputLabel>
                   <Field
                     component={Select}
@@ -127,10 +129,13 @@ const SignUp = () => {
                     variant="standard"
                     style={{ width: '100%' }}
                     name="level"
+                    inputProps={{
+                      id: 'age-simple',
+                    }}
                   >
                     <MenuItem value="Amador">Amador</MenuItem>
                     <MenuItem value="Intermediário">Intermediário</MenuItem>
-                    <MenuItem value="Profissional">Profissional</MenuItem>
+                    <MenuItem value="Avançado">Profissional</MenuItem>
                   </Field>
                 </FormControl>
                 {isSubmitting && <LinearProgress />}
@@ -140,6 +145,7 @@ const SignUp = () => {
                   variant="contained"
                   color="secondary"
                   onClick={submitForm}
+                  disabled={!dirty || !isValid}
                   data-testid="entrar"
                   fullWidth
                 >
