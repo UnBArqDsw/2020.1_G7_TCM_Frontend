@@ -83,4 +83,70 @@ export const makestyles = makeStyles((theme) => ({
       marginRight: '800px',
     },
   },
+
+  dateBoxStartDate: {
+    fontSize: '18px',
+    border: 'none',
+    borderBottom: '2px solid #000000',
+    backgroundColor: '#ffffff',
+    margin: '2% 0px',
+    width: '48%',
+    '&:before': {
+      borderColor: '#000',
+    },
+    '&:after': {
+      borderColor: '#000',
+    },
+    '& .MuiInputLabel-root': {
+      color: '#000',
+    },
+    '& label.Mui-focused': {
+      color: '#000',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#000',
+    },
+    '& .MuiInput-underline:before': {
+      borderBottomColor: '#000',
+    },
+    '& .MuiInput-underline:hover': {
+      borderBottomColor: '#000',
+    },
+    '& .MuiInputBase-input': {
+      color: '#000',
+    },
+  },
+  dateBoxFinishDate: {
+    fontSize: '18px',
+    border: 'none',
+    borderBottom: '2px solid #000000',
+    backgroundColor: '#ffffff',
+    margin: '2% 0px',
+    width: '48%',
+    marginLeft: '13px',
+    '&:before': {
+      borderColor: '#000',
+    },
+    '&:after': {
+      borderColor: '#000',
+    },
+    '& .MuiInputLabel-root': {
+      color: '#000',
+    },
+    '& label.Mui-focused': {
+      color: '#000',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#000',
+    },
+    '& .MuiInput-underline:before': {
+      borderBottomColor: '#000',
+    },
+    '& .MuiInput-underline:hover': {
+      borderBottomColor: '#000',
+    },
+    '& .MuiInputBase-input': {
+      color: '#000',
+    },
+  },
 }));

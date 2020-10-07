@@ -120,7 +120,7 @@ const CreateTournament1 = () => {
             <Box className={styles.dateBox}>
               <Field
                 component={TextField}
-                className={styles.select}
+                className={styles.dateBoxStartDate}
                 label="Início"
                 type="date"
                 defaultValue=""
@@ -132,7 +132,7 @@ const CreateTournament1 = () => {
 
               <Field
                 component={TextField}
-                className={styles.select}
+                className={styles.dateBoxFinishDate}
                 label="Término"
                 type="date"
                 defaultValue=""
