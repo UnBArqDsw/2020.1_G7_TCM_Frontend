@@ -11,7 +11,7 @@ const ButtonBox = () => {
   return (
     <Box className={styles.buttonBox}>
       <IconButton aria-label="do_other_thing">
-        <CloseIcon className={styles.buttonBoxArrowIcon} />
+        <CloseIcon className={styles.buttonClose} />
       </IconButton>
 
       <IconButton aria-label="do_something">
