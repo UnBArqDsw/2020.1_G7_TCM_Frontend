@@ -29,6 +29,7 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   styleLink: {
+    color: '#000000',
     marginTop: '1%',
     textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
