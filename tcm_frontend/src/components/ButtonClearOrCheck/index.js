@@ -5,7 +5,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 import { makestyles } from './style';
 
-const ButtonBox = () => {
+const ButtonClearOrCheck = () => {
   const styles = makestyles();
 
   return (
@@ -21,4 +21,4 @@ const ButtonBox = () => {
   );
 };
 
-export default ButtonBox;
+export default ButtonClearOrCheck;

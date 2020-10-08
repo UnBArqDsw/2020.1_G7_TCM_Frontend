@@ -14,6 +14,7 @@ import { Formik, Form, Field } from 'formik';
 
 import { TextField, Select } from 'formik-material-ui';
 import { useStyles, muiTheme } from '../style';
+import ButtonClearOrCheck from '../../../components/ButtonClearOrCheck';
 
 const contactSchema = Yup.object().shape({});
 
@@ -31,7 +32,7 @@ const FormProfile = () => {
         validationSchema={contactSchema}
         onSubmit={() => {}}
       >
-        {({ submitForm, isSubmitting }) => (
+        {({ isSubmitting }) => (
           <Form>
             <ThemeProvider theme={muiTheme}>
               <Field
@@ -81,6 +82,7 @@ const FormProfile = () => {
                   <MenuItem value="Profissional">Profissional</MenuItem>
                 </Field>
               </FormControl>
+              <ButtonClearOrCheck />
             </ThemeProvider>
           </Form>
         )}
