@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+import { createMuiTheme, MuiThemeProvider, Hidden } from '@material-ui/core';
 import Routes from './routes';
 import GlobalStyle from './globalStyle';
 
@@ -13,7 +13,7 @@ const theme = createMuiTheme({
       main: '#f0f0f5',
     },
     background: {
-      default: '#f0f0f5',
+      default: '#000',
     },
     text: {
       primary: '#212121',
@@ -28,12 +28,17 @@ const theme = createMuiTheme({
 const App = () => {
   return (
     <>
-      <MuiThemeProvider theme={theme}>
-        <BrowserRouter>
-          <GlobalStyle />
-          <Routes />
-        </BrowserRouter>
-      </MuiThemeProvider>
+      <Hidden mdDown>
+        <p>Esta aplicação não está otimizada para telas grandes</p>
+      </Hidden>
+      <Hidden only={['lg', 'xl']}>
+        <MuiThemeProvider theme={theme}>
+          <BrowserRouter>
+            <Routes />
+            <GlobalStyle />
+          </BrowserRouter>
+        </MuiThemeProvider>
+      </Hidden>
     </>
   );
 };

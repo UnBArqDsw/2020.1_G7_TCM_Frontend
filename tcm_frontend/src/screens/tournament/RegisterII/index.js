@@ -35,7 +35,8 @@ export const useStyles = makeStyles((theme) => ({
     form: {
         justifyContent:'center',
         alignItems:'center',
-        left:'50%'
+        left:'50%',
+        backgroundColor: 'red'
     },
     styleBox: {
         width: '100%',
@@ -43,7 +44,8 @@ export const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '50vh'
+        height: '74%',
+        backgroundColor: 'red'
       },
 }));
 
