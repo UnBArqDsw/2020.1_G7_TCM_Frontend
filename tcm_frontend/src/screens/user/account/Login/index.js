@@ -46,7 +46,7 @@ const Login = () => {
             <Formik
               initialValues={initialValues}
               validationSchema={contactSchema}
-              onSubmit={(values) => {console.log(values)}}
+              onSubmit={() => {}}
             >
               {({ submitForm, isSubmitting }) => (
                 <Form style={{ width: '90%' }}>
