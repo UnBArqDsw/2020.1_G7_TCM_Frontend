@@ -1,39 +1,37 @@
 import React from 'react';
 import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import { Home, Search, AddCircle, EmojiEvents } from '@material-ui/icons';
 
-const makestyles = makeStyles({
-  bottomNavigation: {
-    backgroundColor: '#EAF1EB',
-  },
-});
+import { makestyles } from './style';
 
 function Navbar() {
-  const styles = makestyles();
+  const classes = makestyles();
 
   return (
-    <BottomNavigation className={styles.bottomNavigation} showLabels>
+    <BottomNavigation className={classes.root} showLabels>
       <BottomNavigationAction
-        className="bottom-navigation-icon"
+        name="feed"
+        className={classes.bottomNavigationAction}
         label="Feed"
-        icon={<Home style={{ color: '#050505', opacity: '70%' }} />}
+        icon={<Home className={classes.icon} />}
       />
       <BottomNavigationAction
-        className="bottom-navigation-icon"
-        name="Pesquisa"
-        label="Search"
-        icon={<Search style={{ color: '#050505', opacity: '70%' }} />}
+        name="search"
+        className={classes.bottomNavigationAction}
+        label="Pesquisa"
+        icon={<Search className={classes.icon} />}
       />
       <BottomNavigationAction
-        className="bottom-navigation-icon"
+        name="create-tournament"
+        className={classes.bottomNavigationAction}
         label="Criar Torneio"
-        icon={<AddCircle style={{ color: '#050505', opacity: '70%' }} />}
+        icon={<AddCircle className={classes.icon} />}
       />
       <BottomNavigationAction
-        className="bottom-navigation-icon"
+        className={classes.bottomNavigationAction}
+        name="my-tournaments"
         label="Torneios"
-        icon={<EmojiEvents style={{ color: '#050505', opacity: '70%' }} />}
+        icon={<EmojiEvents className={classes.icon} />}
       />
     </BottomNavigation>
   );

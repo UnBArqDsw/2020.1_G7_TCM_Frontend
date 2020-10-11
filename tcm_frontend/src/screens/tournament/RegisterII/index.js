@@ -4,6 +4,7 @@ import { makeStyles, Container, Typography, Box } from '@material-ui/core';
 import Appbar from '../../../components/Appbar';
 import Navbar from '../../../components/Navbar';
 import Formregister from './Form';
+import {Link as RouterLink} from 'react-router-dom'
 
 export const useStyles = makeStyles((theme) => ({
     container: {
@@ -45,7 +46,7 @@ export const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
         height: '74%',
-        backgroundColor: 'red'
+        // backgroundColor: 'red'
       },
 }));
 
