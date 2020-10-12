@@ -23,6 +23,8 @@ const FormProfile = () => {
   const initialValues = {
     nome: '',
     username: '',
+    nivel: '',
+    date: ''
   };
 
   return (
@@ -39,7 +41,7 @@ const FormProfile = () => {
                 component={TextField}
                 color="secondary"
                 name="nome"
-                type="nome"
+                type="text"
                 label="Nome"
                 fullWidth
               />
@@ -47,9 +49,9 @@ const FormProfile = () => {
               <Field
                 component={TextField}
                 className={classes.styleInputUsername}
-                type="username"
+                type="text"
                 label="Username"
-                name="Username"
+                name="username"
                 fullWidth
               />
               <Field
@@ -58,7 +60,7 @@ const FormProfile = () => {
                 label="Data de nascimento"
                 fullWidth
                 type="date"
-                defaultValue=""
+                // defaultValue=""
                 name="date"
                 InputLabelProps={{
                   shrink: true,
