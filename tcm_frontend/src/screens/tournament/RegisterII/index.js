@@ -20,7 +20,6 @@ const ResgisterII = () => {
       <Box className={style.styleBox}>
         <Formregister />
       </Box>
-
       <div className={style.footer}>
         <Navbar />
       </div>
