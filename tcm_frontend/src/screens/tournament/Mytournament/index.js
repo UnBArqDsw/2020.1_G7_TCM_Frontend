@@ -6,14 +6,16 @@ import Paper from '@material-ui/core/Paper';
 import AppBar from '../../../components/Appbar';
 import NavBar from '../../../components/Navbar';
 import Card from '../../../components/Card';
+import { useStyles } from './styles';
 
 const MyTournament = () => {
+  const styles = useStyles();
   const handleChange = (event, newValue) => {
     alert('teste');
   };
 
   return (
-    <Container>
+    <Container maxWidth="md" className={styles.styleDiv}>
       <AppBar />
       <Paper>
         <Tabs onChange={handleChange}>
