@@ -9,7 +9,6 @@ export const useStyles = makeStyles(() => ({
     justify: 'flex-start',
   },
   tabs: {
-    backgroundColor: '#FF0000',
     width: '50%',
     marginLeft: '25%',
   },

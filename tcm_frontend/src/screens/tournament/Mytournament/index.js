@@ -19,7 +19,7 @@ const MyTournament = () => {
     <Container maxWidth="md" className={styles.styleDiv}>
       <AppBar />
       <Tabs
-        indicatorColor="#00000"
+        indicatorColor="secondary"
         variant="scrollable"
         scrollButtons="auto"
         value={value}
