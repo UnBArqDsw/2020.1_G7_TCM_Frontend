@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { Container } from '@material-ui/core';
 import Tabs from '@material-ui/core/Tabs';
@@ -12,7 +13,6 @@ const MyTournament = () => {
   const styles = useStyles();
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    // alert('teste');
   };
 
   return (
