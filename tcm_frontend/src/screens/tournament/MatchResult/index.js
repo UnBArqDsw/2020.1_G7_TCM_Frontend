@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 import { useStyles } from './styles';
 import Appbar from '../../../components/Appbar';
 import Navbar from '../../../components/Navbar';
@@ -18,13 +18,16 @@ const MatchResult = () => {
             <div className={classes.playerScoreBox}>
               <p className={classes.playerScoreBoxText}>0</p>
             </div>
-            <p>Jogador 1</p>
+            <p className={classes.playerScoreText}>Jogador 1</p>
           </div>
+
+          <p className={classes.playerScoreSeparator}>X</p>
+
           <div className={classes.playerScore}>
             <div className={classes.playerScoreBox}>
               <p className={classes.playerScoreBoxText}>0</p>
             </div>
-            <p>Jogador 1</p>
+            <p className={classes.playerScoreText}>Jogador 2</p>
           </div>
         </div>
       </div>
