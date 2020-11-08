@@ -26,16 +26,12 @@ export const useStyles = makeStyles(() => ({
     justifyContent: 'center',
     fontSize: '20px',
     fontWeight: 'bold',
-    // backgroundColor: 'blue',
     marginTop: '10%',
   },
   centerBox: {
-    // flexGrow: 1,
-    // justify: 'center',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    // alignItems: 'center',
     height: '70%',
     backgroundColor: 'red',
   },
@@ -43,8 +39,21 @@ export const useStyles = makeStyles(() => ({
     backgroundColor: 'blue',
     marginTop: '20%',
     height: '70%',
+    justifyContent: 'space-between',
+    display: 'flex',
+    flexDirection: 'row',
   },
-  //   playerScore{
-
-  //   },
+  playerScore: {},
+  playerScoreBox: {
+    backgroundColor: '#cccccc',
+    height: '100px',
+    width: '100px',
+  },
+  playerScoreBoxText: {
+    display: 'flex',
+    justifyContent: 'center',
+    paddingTop: '20%',
+    fontSize: '50px',
+    fontWeight: 'bold',
+  },
 }));
