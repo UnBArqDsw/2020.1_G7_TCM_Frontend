@@ -9,23 +9,15 @@ export const useStyles = makeStyles((theme) => ({
     height: '20vh',
     background: '#e0e0e0',
   },
-  avatar1: {
-    width: '9vh',
-    height: '9vh',
-    marginTop: '1vh',
-    marginLeft: '1vh',
-    marginBottom: '5px',
-    borderRadius: '10vh',
-    marginRight: '0',
+  stylegrid: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  avatar2: {
+
+  avatar: {
     width: '9vh',
     height: '9vh',
-    marginTop: '1vh',
-    marginLeft: '20vh',
-    marginBottom: '5px',
-    borderRadius: '10vh',
-    marginRight: '0',
+    marginTop: '5vh',
   },
   stylecontainer: {
     marginLeft: '1vh',
