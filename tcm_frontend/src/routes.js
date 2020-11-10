@@ -8,6 +8,7 @@ import RegisterII from './screens/tournament/RegisterII';
 import CreateTournament1 from './screens/tournament/CreateTournament1';
 import Feed from './screens/Feed';
 import Profile from './screens/Profile';
+import MyTournament from './screens/tournament/Mytournament';
 
 const Routes = () => {
   return (
@@ -18,6 +19,7 @@ const Routes = () => {
       <Route path="/profile" component={Profile} />
       <Route path="/create_tournament" component={CreateTournament1} />
       <Route path="/feed" component={Feed} />
+      <Route path="/mytournament" component={MyTournament} />
     </Switch>
   );
 };
