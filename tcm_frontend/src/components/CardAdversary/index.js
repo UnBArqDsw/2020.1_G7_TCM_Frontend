@@ -11,6 +11,8 @@ const CardAversary = () => {
   return (
     <Card className={classes.card}>
       <CardContent className={classes.stylecardcontent}>
+        <Avatar className={classes.avatar1}>M</Avatar>
+        <Avatar className={classes.avatar2}>L</Avatar>
         <Container className={classes.stylecontainer}>
           <Typography className={classes.stylefont} />
         </Container>

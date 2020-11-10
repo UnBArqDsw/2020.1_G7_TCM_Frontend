@@ -9,10 +9,20 @@ export const useStyles = makeStyles((theme) => ({
     height: '20vh',
     background: '#e0e0e0',
   },
-  avatar: {
-    width: '13vh',
-    height: '13vh',
+  avatar1: {
+    width: '9vh',
+    height: '9vh',
     marginTop: '1vh',
+    marginLeft: '1vh',
+    marginBottom: '5px',
+    borderRadius: '10vh',
+    marginRight: '0',
+  },
+  avatar2: {
+    width: '9vh',
+    height: '9vh',
+    marginTop: '1vh',
+    marginLeft: '20vh',
     marginBottom: '5px',
     borderRadius: '10vh',
     marginRight: '0',
@@ -22,7 +32,8 @@ export const useStyles = makeStyles((theme) => ({
     marginTop: '1vh',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    alignItems: 'center',
+    columnCount: '2',
   },
   stylefont: {
     [theme.breakpoints.down('sm')]: {
