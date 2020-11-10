@@ -12,6 +12,7 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
+    // eslint-disable-next-line no-console
     console.log(error);
   },
 );

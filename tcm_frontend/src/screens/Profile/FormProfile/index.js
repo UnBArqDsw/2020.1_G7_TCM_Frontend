@@ -24,7 +24,7 @@ const FormProfile = () => {
     nome: '',
     username: '',
     nivel: '',
-    date: ''
+    date: '',
   };
 
   return (
