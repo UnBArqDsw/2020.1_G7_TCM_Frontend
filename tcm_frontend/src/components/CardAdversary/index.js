@@ -12,15 +12,19 @@ const CardAversary = () => {
   return (
     <Card className={classes.card}>
       <Grid container className={classes.stylegrid} spacing={10}>
-        <Grid item>
+        <Grid item alignItems="center">
           <Avatar className={classes.avatar}>M</Avatar>
+          <Typography align="center" gutterBottom className={classes.stylefont}>
+            Moacir Mar9uaighes
+          </Typography>
         </Grid>
         <Grid item>
           <Avatar className={classes.avatar}>L</Avatar>
+          <Typography align="center" className={classes.stylefont}>
+            Lucas Alexandre
+          </Typography>
         </Grid>
-        <Container className={classes.stylecontainer}>
-          <Typography className={classes.stylefont} />
-        </Container>
+        <Container className={classes.stylecontainer} />
       </Grid>
     </Card>
   );

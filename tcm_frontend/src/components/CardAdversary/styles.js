@@ -17,7 +17,8 @@ export const useStyles = makeStyles((theme) => ({
   avatar: {
     width: '9vh',
     height: '9vh',
-    marginTop: '5vh',
+    marginTop: '3vh',
+    margin: '0 auto',
   },
   stylecontainer: {
     marginLeft: '1vh',
@@ -28,6 +29,8 @@ export const useStyles = makeStyles((theme) => ({
     columnCount: '2',
   },
   stylefont: {
+    width: '50%',
+    margin: '0 auto',
     [theme.breakpoints.down('sm')]: {
       fontSize: '0.9rem',
     },
