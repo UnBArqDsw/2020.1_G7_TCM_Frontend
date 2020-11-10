@@ -10,6 +10,7 @@ import Feed from './screens/Feed';
 import Profile from './screens/Profile';
 import ButtonBox from './components/ButtonClearOrCheck';
 import MatchResult from './screens/tournament/MatchResult';
+import MyTournament from './screens/tournament/Mytournament';
 
 const Routes = () => {
   return (
@@ -22,6 +23,7 @@ const Routes = () => {
       <Route path="/feed" component={Feed} />
       <Route path="/teste" component={ButtonBox} />
       <Route path="/match_result" component={MatchResult} />
+      <Route path="/mytournament" component={MyTournament} />
     </Switch>
   );
 };
