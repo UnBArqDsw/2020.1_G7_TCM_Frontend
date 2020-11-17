@@ -50,11 +50,18 @@ export const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1),
   },
   initDate: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
     marginRight: '2%',
     width: '48%',
   },
   finishDate: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
     marginLeft: '2%',
     width: '48%',
+  },
+  error: {
+    color: theme.palette.error.main,
   },
 }));
