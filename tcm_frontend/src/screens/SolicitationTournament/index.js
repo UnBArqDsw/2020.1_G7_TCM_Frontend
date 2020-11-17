@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { Typography, Container, Button } from '@material-ui/core';
 import AppBar from '../../components/Appbar';
