@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useHistory } from 'react-router-dom';
 
 import {
   Button,
@@ -9,6 +9,7 @@ import {
   FormControl,
   InputLabel,
   ThemeProvider,
+  Typography,
 } from '@material-ui/core';
 
 import * as Yup from 'yup';
@@ -17,9 +18,11 @@ import { Formik, Form, Field } from 'formik';
 import { TextField, Select } from 'formik-material-ui';
 import { Wrapper, Registro, Container, theme, useStyles } from './style';
 
+import SessionService from '../../../../services/session';
+
 const contactSchema = Yup.object().shape({
-  username: Yup.string('Username Inválido')
-    .required('Username é obrigatório')
+  nickname: Yup.string('nickname Inválido')
+    .required('nickname é obrigatório')
     .min(3, 'Deve conter pelo menos 3 caracteres')
     .matches(/^[0-9a-zA-Z][0-9a-zA-Z]*$/, 'Não utilize caracteres epeciais'),
   name: Yup.string('Nome Inválido')
@@ -32,27 +35,39 @@ const contactSchema = Yup.object().shape({
   password: Yup.string()
     .required('Por favor digite sua senha')
     .matches(/^[a-z0-9]{3,15}$/, 'Senha deve conter pelo menos 3 digitos'),
-  confirmPassword: Yup.string()
+  passwordConfirmation: Yup.string()
     .required('Por favor confirme sua senha')
     .matches(/^[a-z0-9]{3,15}$/, 'Senha deve conter pelo menos 3 digitos')
     .when('password', {
       is: (password) => !!(password && password.length > 0),
       then: Yup.string().oneOf([Yup.ref('password')], 'Senhas não coincidem'),
     }),
-  date: Yup.date().required('Data de Nascimento é requirida'),
+  birthday: Yup.date().required('Data de Nascimento é requirida'),
   level: Yup.string().required('Nível é obrigatório'),
 });
 
 const SignUp = () => {
+  const history = useHistory();
+  const [error, setError] = useState('');
   const classes = useStyles();
   const initialValues = {
-    username: '',
-    date: '',
+    nickname: '',
+    birthday: '',
     name: '',
     email: '',
     password: '',
-    confirmPassword: '',
+    passwordConfirmation: '',
     level: '',
+  };
+
+  const handleSubimit = async (data) => {
+    try {
+      await SessionService.signUp(data);
+      history.push('/feed');
+      setError('');
+    } catch (err) {
+      setError(err.response.data.message);
+    }
   };
   return (
     <Wrapper>
@@ -62,17 +77,17 @@ const SignUp = () => {
           <Formik
             initialValues={initialValues}
             validationSchema={contactSchema}
-            onSubmit={() => {}}
+            onSubmit={(data) => handleSubimit(data)}
           >
             {({ submitForm, isSubmitting, dirty, isValid }) => (
               <Form>
                 <Field
                   color="primary"
                   component={TextField}
-                  name="username"
-                  type="username"
-                  label="Username"
-                  inputProps={{ 'data-testid': 'username' }}
+                  name="nickname"
+                  type="nickname"
+                  label="nickname"
+                  inputProps={{ 'data-testid': 'nickname' }}
                   fullWidth
                 />
                 <Field
@@ -103,7 +118,7 @@ const SignUp = () => {
                   component={TextField}
                   type="password"
                   label="Confirmar senha"
-                  name="confirmPassword"
+                  name="passwordConfirmation"
                   fullWidth
                 />
                 <Field
@@ -111,7 +126,7 @@ const SignUp = () => {
                   label="Data de nascimento"
                   fullWidth
                   type="date"
-                  name="date"
+                  name="birthday"
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -137,6 +152,9 @@ const SignUp = () => {
                   </Field>
                 </FormControl>
                 {isSubmitting && <LinearProgress />}
+                <Typography align="center" color="error">
+                  {error}
+                </Typography>
                 <br />
                 <Button
                   className={classes.styleButton}
