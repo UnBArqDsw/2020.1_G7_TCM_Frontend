@@ -1,16 +1,19 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
 import { Formik, Field, Form } from 'formik';
 import { TextField, Select } from 'formik-material-ui';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
-import { Box, Container, FormControl } from '@material-ui/core';
+import { Box, Container, FormControl, Button } from '@material-ui/core';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import Appbar from '../../../components/Appbar';
 import Navbar from '../../../components/Navbar';
-import Buttonbox from '../../../components/Buttonbox';
 import { makestyles } from './style';
+import Tournament from '../../../services/tournament';
 
 const CreateTournament1 = () => {
+  const history = useHistory();
   const [state, setState] = useState(['']);
   const [selectState, setSelectState] = useState('');
   const [city, setCity] = useState(['']);
@@ -35,23 +38,30 @@ const CreateTournament1 = () => {
   const initialValues = {
     name: '',
     type: '',
-    state: '',
-    city: '',
-    age: '',
-    level: '',
-    blockType: '',
-    playersNumber: '',
-    startDate: '',
-    finishDate: '',
+    estado: '',
+    cidade: '',
+    endereco: '',
+    players_quantity: 0,
+    start_date: '',
+    end_date: '',
+    description: '',
+    rules: 'olá',
   };
 
-  console.log(selectState);
+  const submitTournament = (values) => {
+    Tournament.createTournament(values).then(history.push('/mytournament'));
+  };
   return (
     <>
       <Appbar style={{ width: '100%' }} />
       <Container maxWidth="xs">
         <p className={styles.title}>Cadastre seu torneio</p>
-        <Formik initialValues={initialValues} onSubmit={() => {}}>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={(values) => {
+            submitTournament(values);
+          }}
+        >
           {({ submitForm }) => (
             <Form className={styles.formik_form}>
               <Field
@@ -73,18 +83,23 @@ const CreateTournament1 = () => {
                   fullWidth
                   component={Select}
                 >
-                  <MenuItem value="Playoff">Playoff</MenuItem>
+                  <MenuItem value="P">Playoff</MenuItem>
                 </Field>
               </FormControl>
 
               <FormControl className={styles.formControl}>
                 <InputLabel style={{ color: '#000000' }}>Estado</InputLabel>
-                <Field name="state" label="Estado" fullWidth component={Select}>
-                  {state.map((states) => {
+                <Field
+                  name="estado"
+                  label="Estado"
+                  fullWidth
+                  component={Select}
+                >
+                  {state.map((states, id) => {
                     return (
                       <MenuItem
+                        key={id}
                         onClick={() => setSelectState(states.sigla)}
-                        key={states.id}
                         value={states.sigla}
                       >
                         {states.sigla}
@@ -96,11 +111,15 @@ const CreateTournament1 = () => {
 
               <FormControl className={styles.formControl}>
                 <InputLabel style={{ color: '#000000' }}>Cidade</InputLabel>
-                <Field name="city" label="Cidade" fullWidth component={Select}>
-                  {city.map((cities) => {
-                    console.log(city);
+                <Field
+                  name="cidade"
+                  label="Cidade"
+                  fullWidth
+                  component={Select}
+                >
+                  {city.map((cities, id) => {
                     return (
-                      <MenuItem key={cities.id} value={cities.nome}>
+                      <MenuItem key={id} value={cities.nome}>
                         {cities.nome}
                       </MenuItem>
                     );
@@ -110,7 +129,7 @@ const CreateTournament1 = () => {
 
               <Field
                 component={TextField}
-                name="address"
+                name="endereco"
                 label="Endereço"
                 fullWidth
                 type="text"
@@ -120,8 +139,10 @@ const CreateTournament1 = () => {
                 <InputLabel style={{ color: '#000000' }}>
                   Nũmero de jogadores
                 </InputLabel>
-                <Field name="playersNumber" fullWidth component={Select}>
-                  <MenuItem value="8">8</MenuItem>
+                <Field name="players_quantity" fullWidth component={Select}>
+                  <MenuItem value={16}>16</MenuItem>
+                  <MenuItem value={8}>8</MenuItem>
+                  <MenuItem value={4}>4</MenuItem>
                 </Field>
               </FormControl>
 
@@ -132,7 +153,7 @@ const CreateTournament1 = () => {
                   label="Início"
                   type="date"
                   defaultValue=""
-                  name="startDate"
+                  name="start_date"
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -144,13 +165,28 @@ const CreateTournament1 = () => {
                   label="Término"
                   type="date"
                   defaultValue=""
-                  name="finishDate"
+                  name="end_date"
                   InputLabelProps={{
                     shrink: true,
                   }}
                 />
               </Box>
-              <Buttonbox click={submitForm} nextRoute="tournament2" />
+              <Field
+                component={TextField}
+                name="description"
+                label="Descrição"
+                fullWidth
+                multiline
+                type="text"
+                className={styles.select}
+              />
+              <Button
+                variant="contained"
+                onClick={submitForm}
+                style={{ marginBottom: '20px', marginTop: '20px' }}
+              >
+                Criar Torneio
+              </Button>
             </Form>
           )}
         </Formik>
