@@ -25,8 +25,10 @@ const SolicitationTournament = () => {
         <Typography className={classes.stylefont}>
           Número de Jogadores: 8
         </Typography>
-        <Button variant="contained">Ver descrição</Button>
-        <Button variant="contained">Solicitar inscrição</Button>
+        <Typography className={classes.stylefont}>Descrição: </Typography>
+        <Button fullWidth className={classes.styleButton} variant="contained">
+          Solicitar inscrição
+        </Button>
       </Container>
       <div className={classes.footer}>
         <NavBar />

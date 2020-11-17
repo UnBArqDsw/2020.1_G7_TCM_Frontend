@@ -17,17 +17,20 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     background: '#ffffff',
   },
+  styleButton: {
+    marginTop: '15vh',
+  },
   stylesdiv: {
     backgroundColor: '#ffffff',
     height: '100vh',
   },
-
   stylecontainer: {
     alignItems: 'center',
     display: 'flex',
     margin: '2% 0px',
     flexDirection: 'column',
     justifyContent: 'center',
+    padding: '20px',
   },
   stylefont: {
     [theme.breakpoints.down('sm')]: {
