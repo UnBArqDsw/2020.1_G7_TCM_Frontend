@@ -1,18 +1,49 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
-import { Formik, Field, Form } from 'formik';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { TextField, Select } from 'formik-material-ui';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
-import { Box, Container, FormControl, Button } from '@material-ui/core';
+import {
+  Box,
+  Container,
+  FormControl,
+  Button,
+  Typography,
+  MuiThemeProvider,
+} from '@material-ui/core';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import * as Yup from 'yup';
+import { theme, button, useStyles } from './style';
 import Appbar from '../../../components/Appbar';
 import Navbar from '../../../components/Navbar';
-import { makestyles } from './style';
 import Tournament from '../../../services/tournament';
 
+const contactSchema = Yup.object().shape({
+  name: Yup.string('Nome Torneio Inválido')
+    .required('Nome é obrigatório')
+    .min(3, 'Deve conter pelo menos 3 caracteres'),
+  type: Yup.string('Tipo Inválido').required('Tipo do torneio é obrigatório'),
+  estado: Yup.string('Estado Inválido').required('Estado é obrigatório'),
+  cidade: Yup.string('Cidade Inválida').required('Cidade é obrigatória'),
+  endereco: Yup.string('Endereço Inválido').required('Endereço é obrigatório'),
+  players_quantity: Yup.number('Quantidade Inválida').required(
+    'Qauntidade de jogadores é obrigatório',
+  ),
+  start_date: Yup.date('Data inválida').required(
+    'Data de início é obrigatória',
+  ),
+  end_date: Yup.date('Data inválida').required('Data de término é obrigatória'),
+  description: Yup.string('Endereço Inválido').required(
+    'Descrição é obrigatória',
+  ),
+});
+
 const CreateTournament1 = () => {
+  const [error, setError] = useState();
+  const styles = useStyles();
   const history = useHistory();
   const [state, setState] = useState(['']);
   const [selectState, setSelectState] = useState('');
@@ -34,159 +65,195 @@ const CreateTournament1 = () => {
     fetchStates();
     fetchCity();
   }, [selectState]);
-  const styles = makestyles();
   const initialValues = {
     name: '',
     type: '',
     estado: '',
     cidade: '',
     endereco: '',
-    players_quantity: 0,
+    players_quantity: '',
     start_date: '',
     end_date: '',
     description: '',
-    rules: 'olá',
+    rules: 'ok',
   };
 
-  const submitTournament = (values) => {
-    Tournament.createTournament(values).then(history.push('/mytournament'));
+  const submitTournament = async (values) => {
+    try {
+      await Tournament.createTournament(values);
+      history.push('/mytournament');
+    } catch (err) {
+      setError(err.message);
+    }
   };
   return (
     <>
       <Appbar style={{ width: '100%' }} />
-      <Container maxWidth="xs">
-        <p className={styles.title}>Cadastre seu torneio</p>
+      <Container
+        maxWidth="xs"
+        style={{
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography variant="h6" align="center" style={{ marginTop: 10 }}>
+          Cadastre seu torneio
+        </Typography>
         <Formik
           initialValues={initialValues}
+          validationSchema={contactSchema}
           onSubmit={(values) => {
             submitTournament(values);
           }}
         >
-          {({ submitForm }) => (
-            <Form className={styles.formik_form}>
-              <Field
-                component={TextField}
-                name="name"
-                label="Nome do torneio"
-                fullWidth
-                type="text"
-                className={styles.select}
-              />
-
-              <FormControl className={styles.formControl}>
-                <InputLabel style={{ color: '#000000' }}>
-                  Tipo de torneio
-                </InputLabel>
+          {({ submitForm, dirty, isValid }) => (
+            <Form>
+              <MuiThemeProvider theme={theme}>
                 <Field
+                  className={styles.name}
+                  component={TextField}
+                  name="name"
+                  label="Nome do torneio"
+                  fullWidth
+                  type="text"
+                />
+                <FormControl className={styles.type}>
+                  <InputLabel style={{ color: '#000000' }}>
+                    Tipo de torneio
+                  </InputLabel>
+                  <Field
+                    className={styles.type}
+                    component={Select}
+                    type="text"
+                    name="type"
+                  >
+                    <MenuItem value="P">Playoff</MenuItem>
+                  </Field>
+                </FormControl>
+                <ErrorMessage
+                  component="div"
+                  className={styles.error}
                   name="type"
-                  label="Tipo de torneio"
-                  fullWidth
-                  component={Select}
-                >
-                  <MenuItem value="P">Playoff</MenuItem>
-                </Field>
-              </FormControl>
+                />
 
-              <FormControl className={styles.formControl}>
-                <InputLabel style={{ color: '#000000' }}>Estado</InputLabel>
-                <Field
+                <FormControl className={styles.type}>
+                  <InputLabel style={{ color: '#000000' }}>Estado</InputLabel>
+                  <Field
+                    name="estado"
+                    label="Estado"
+                    fullWidth
+                    component={Select}
+                  >
+                    {state.map((states, id) => {
+                      return (
+                        <MenuItem
+                          key={id}
+                          onClick={() => setSelectState(states.sigla)}
+                          value={states.sigla}
+                        >
+                          {states.sigla}
+                        </MenuItem>
+                      );
+                    })}
+                  </Field>
+                </FormControl>
+                <ErrorMessage
+                  component="div"
+                  className={styles.error}
                   name="estado"
-                  label="Estado"
-                  fullWidth
-                  component={Select}
-                >
-                  {state.map((states, id) => {
-                    return (
-                      <MenuItem
-                        key={id}
-                        onClick={() => setSelectState(states.sigla)}
-                        value={states.sigla}
-                      >
-                        {states.sigla}
-                      </MenuItem>
-                    );
-                  })}
-                </Field>
-              </FormControl>
-
-              <FormControl className={styles.formControl}>
-                <InputLabel style={{ color: '#000000' }}>Cidade</InputLabel>
-                <Field
+                />
+                <FormControl className={styles.type}>
+                  <InputLabel style={{ color: '#000000' }}>Cidade</InputLabel>
+                  <Field
+                    name="cidade"
+                    label="Cidade"
+                    fullWidth
+                    component={Select}
+                  >
+                    {city.map((cities, id) => {
+                      return (
+                        <MenuItem key={id} value={cities.nome}>
+                          {cities.nome}
+                        </MenuItem>
+                      );
+                    })}
+                  </Field>
+                </FormControl>
+                <ErrorMessage
+                  component="div"
+                  className={styles.error}
                   name="cidade"
-                  label="Cidade"
+                />
+                <Field
+                  className={styles.address}
+                  component={TextField}
+                  name="endereco"
+                  label="Endereço"
                   fullWidth
-                  component={Select}
+                  type="text"
+                />
+                <FormControl className={styles.type}>
+                  <InputLabel style={{ color: '#000000' }}>
+                    Nũmero de jogadores
+                  </InputLabel>
+                  <Field name="players_quantity" fullWidth component={Select}>
+                    <MenuItem value={16}>16</MenuItem>
+                    <MenuItem value={8}>8</MenuItem>
+                    <MenuItem value={4}>4</MenuItem>
+                  </Field>
+                </FormControl>
+                <ErrorMessage
+                  component="div"
+                  className={styles.error}
+                  name="players_quantity"
+                />
+                <Box>
+                  <Field
+                    className={styles.initDate}
+                    component={TextField}
+                    label="Início"
+                    type="date"
+                    defaultValue=""
+                    name="start_date"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+
+                  <Field
+                    className={styles.finishDate}
+                    component={TextField}
+                    label="Término"
+                    type="date"
+                    defaultValue=""
+                    name="end_date"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                </Box>
+                <Field
+                  component={TextField}
+                  name="description"
+                  label="Descrição"
+                  fullWidth
+                  multiline
+                  type="text"
+                />
+              </MuiThemeProvider>
+              <MuiThemeProvider theme={button}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={submitForm}
+                  style={{ marginBottom: '20px', marginTop: '20px' }}
+                  fullWidth
+                  disabled={!dirty || !isValid}
                 >
-                  {city.map((cities, id) => {
-                    return (
-                      <MenuItem key={id} value={cities.nome}>
-                        {cities.nome}
-                      </MenuItem>
-                    );
-                  })}
-                </Field>
-              </FormControl>
-
-              <Field
-                component={TextField}
-                name="endereco"
-                label="Endereço"
-                fullWidth
-                type="text"
-                className={styles.select}
-              />
-              <FormControl className={styles.formControl}>
-                <InputLabel style={{ color: '#000000' }}>
-                  Nũmero de jogadores
-                </InputLabel>
-                <Field name="players_quantity" fullWidth component={Select}>
-                  <MenuItem value={16}>16</MenuItem>
-                  <MenuItem value={8}>8</MenuItem>
-                  <MenuItem value={4}>4</MenuItem>
-                </Field>
-              </FormControl>
-
-              <Box className={styles.dateBox}>
-                <Field
-                  component={TextField}
-                  className={styles.dateBoxStartDate}
-                  label="Início"
-                  type="date"
-                  defaultValue=""
-                  name="start_date"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-
-                <Field
-                  component={TextField}
-                  className={styles.dateBoxFinishDate}
-                  label="Término"
-                  type="date"
-                  defaultValue=""
-                  name="end_date"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-              </Box>
-              <Field
-                component={TextField}
-                name="description"
-                label="Descrição"
-                fullWidth
-                multiline
-                type="text"
-                className={styles.select}
-              />
-              <Button
-                variant="contained"
-                onClick={submitForm}
-                style={{ marginBottom: '20px', marginTop: '20px' }}
-              >
-                Criar Torneio
-              </Button>
+                  Criar Torneio
+                </Button>
+              </MuiThemeProvider>
             </Form>
           )}
         </Formik>
