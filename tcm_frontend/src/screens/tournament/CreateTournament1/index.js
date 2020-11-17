@@ -12,14 +12,25 @@ import { makestyles } from './style';
 
 const CreateTournament1 = () => {
   const [state, setState] = useState(['']);
+  const [selectState, setSelectState] = useState('');
+  const [city, setCity] = useState(['']);
   const fetchStates = async () => {
     await axios
       .get('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
       .then((response) => setState(response.data));
   };
+
+  const fetchCity = async () => {
+    await axios
+      .get(
+        `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectState}/municipios`,
+      )
+      .then((response) => setCity(response.data));
+  };
   useEffect(() => {
     fetchStates();
-  }, []);
+    fetchCity();
+  }, [selectState]);
   const styles = makestyles();
   const initialValues = {
     name: '',
@@ -34,6 +45,7 @@ const CreateTournament1 = () => {
     finishDate: '',
   };
 
+  console.log(selectState);
   return (
     <>
       <Appbar style={{ width: '100%' }} />
@@ -70,7 +82,11 @@ const CreateTournament1 = () => {
                 <Field name="state" label="Estado" fullWidth component={Select}>
                   {state.map((states) => {
                     return (
-                      <MenuItem key={states.id} value={states.sigla}>
+                      <MenuItem
+                        onClick={() => setSelectState(states.sigla)}
+                        key={states.id}
+                        value={states.sigla}
+                      >
                         {states.sigla}
                       </MenuItem>
                     );
@@ -81,7 +97,14 @@ const CreateTournament1 = () => {
               <FormControl className={styles.formControl}>
                 <InputLabel style={{ color: '#000000' }}>Cidade</InputLabel>
                 <Field name="city" label="Cidade" fullWidth component={Select}>
-                  <MenuItem value="Brasília">Brasília</MenuItem>
+                  {city.map((cities) => {
+                    console.log(city);
+                    return (
+                      <MenuItem key={cities.id} value={cities.nome}>
+                        {cities.nome}
+                      </MenuItem>
+                    );
+                  })}
                 </Field>
               </FormControl>
 
