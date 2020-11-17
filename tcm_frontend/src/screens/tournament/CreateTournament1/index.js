@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
-import { Formik, Field, Form } from 'formik';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { TextField, Select } from 'formik-material-ui';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -25,7 +25,7 @@ const contactSchema = Yup.object().shape({
   name: Yup.string('Nome Torneio Inválido')
     .required('Nome é obrigatório')
     .min(3, 'Deve conter pelo menos 3 caracteres'),
-  type: Yup.string('Tipo Inválido').required('Tipo é obrigatório'),
+  type: Yup.string('Tipo Inválido').required('Tipo do torneio é obrigatório'),
   estado: Yup.string('Estado Inválido').required('Estado é obrigatório'),
   cidade: Yup.string('Cidade Inválida').required('Cidade é obrigatória'),
   endereco: Yup.string('Endereço Inválido').required('Endereço é obrigatório'),
@@ -71,7 +71,7 @@ const CreateTournament1 = () => {
     estado: '',
     cidade: '',
     endereco: '',
-    players_quantity: 0,
+    players_quantity: '',
     start_date: '',
     end_date: '',
     description: '',
@@ -118,20 +118,24 @@ const CreateTournament1 = () => {
                   fullWidth
                   type="text"
                 />
-
                 <FormControl className={styles.type}>
                   <InputLabel style={{ color: '#000000' }}>
                     Tipo de torneio
                   </InputLabel>
                   <Field
-                    name="type"
-                    label="Tipo de torneio"
-                    fullWidth
+                    className={styles.type}
                     component={Select}
+                    type="text"
+                    name="type"
                   >
                     <MenuItem value="P">Playoff</MenuItem>
                   </Field>
                 </FormControl>
+                <ErrorMessage
+                  component="div"
+                  className={styles.error}
+                  name="type"
+                />
 
                 <FormControl className={styles.type}>
                   <InputLabel style={{ color: '#000000' }}>Estado</InputLabel>
@@ -154,7 +158,11 @@ const CreateTournament1 = () => {
                     })}
                   </Field>
                 </FormControl>
-
+                <ErrorMessage
+                  component="div"
+                  className={styles.error}
+                  name="estado"
+                />
                 <FormControl className={styles.type}>
                   <InputLabel style={{ color: '#000000' }}>Cidade</InputLabel>
                   <Field
@@ -172,7 +180,11 @@ const CreateTournament1 = () => {
                     })}
                   </Field>
                 </FormControl>
-
+                <ErrorMessage
+                  component="div"
+                  className={styles.error}
+                  name="cidade"
+                />
                 <Field
                   className={styles.address}
                   component={TextField}
@@ -191,7 +203,11 @@ const CreateTournament1 = () => {
                     <MenuItem value={4}>4</MenuItem>
                   </Field>
                 </FormControl>
-
+                <ErrorMessage
+                  component="div"
+                  className={styles.error}
+                  name="players_quantity"
+                />
                 <Box>
                   <Field
                     className={styles.initDate}
