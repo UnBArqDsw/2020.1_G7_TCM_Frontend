@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Field, Form } from 'formik';
 import { TextField, Select } from 'formik-material-ui';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import { Box, Container, FormControl } from '@material-ui/core';
+import axios from 'axios';
 import Appbar from '../../../components/Appbar';
 import Navbar from '../../../components/Navbar';
 import Buttonbox from '../../../components/Buttonbox';
 import { makestyles } from './style';
 
 const CreateTournament1 = () => {
+  const [state, setState] = useState(['']);
+  const fetchStates = async () => {
+    await axios
+      .get('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+      .then((response) => setState(response.data));
+  };
+  useEffect(() => {
+    fetchStates();
+  }, []);
   const styles = makestyles();
   const initialValues = {
     name: '',
@@ -58,7 +68,13 @@ const CreateTournament1 = () => {
               <FormControl className={styles.formControl}>
                 <InputLabel style={{ color: '#000000' }}>Estado</InputLabel>
                 <Field name="state" label="Estado" fullWidth component={Select}>
-                  <MenuItem value="DF">DF</MenuItem>
+                  {state.map((states) => {
+                    return (
+                      <MenuItem key={states.id} value={states.sigla}>
+                        {states.sigla}
+                      </MenuItem>
+                    );
+                  })}
                 </Field>
               </FormControl>
 
@@ -69,48 +85,14 @@ const CreateTournament1 = () => {
                 </Field>
               </FormControl>
 
-              <FormControl className={styles.formControl}>
-                <InputLabel style={{ color: '#000000' }}>
-                  Faixa etária
-                </InputLabel>
-                <Field
-                  name="age"
-                  label="Faixa etária"
-                  fullWidth
-                  component={Select}
-                >
-                  <MenuItem value="18 - 55">18 - 55</MenuItem>
-                </Field>
-              </FormControl>
-
-              <FormControl className={styles.formControl}>
-                <InputLabel style={{ color: '#000000' }}>
-                  Nível do torneio
-                </InputLabel>
-                <Field
-                  name="level"
-                  label="Nível do torneio"
-                  fullWidth
-                  component={Select}
-                >
-                  <MenuItem value="Brasília">Brasília</MenuItem>
-                </Field>
-              </FormControl>
-
-              <FormControl className={styles.formControl}>
-                <InputLabel style={{ color: '#000000' }}>
-                  Tipo de quadra
-                </InputLabel>
-                <Field
-                  name="blockType"
-                  label="Tipo de quadra"
-                  fullWidth
-                  component={Select}
-                >
-                  <MenuItem value="Grama">Grama</MenuItem>
-                </Field>
-              </FormControl>
-
+              <Field
+                component={TextField}
+                name="address"
+                label="Endereço"
+                fullWidth
+                type="text"
+                className={styles.select}
+              />
               <FormControl className={styles.formControl}>
                 <InputLabel style={{ color: '#000000' }}>
                   Nũmero de jogadores
