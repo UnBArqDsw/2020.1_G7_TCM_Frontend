@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
+=======
+/* eslint-disable react/no-array-index-key */
+import React from 'react';
+>>>>>>> 2641f71ef2f955a9eb26c8c91cb6e5c57f6baafb
 import { Container } from '@material-ui/core';
 import AppBar from '../../components/Appbar';
 import NavBar from '../../components/Navbar';
