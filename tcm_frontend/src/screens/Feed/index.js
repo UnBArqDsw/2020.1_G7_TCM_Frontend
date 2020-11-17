@@ -11,21 +11,27 @@ const Feed = () => {
     {
       nome: 'torneio do cristo',
       local: 'BSB',
-      Data: '10/10/20',
+      data: '10/10/20',
     },
     {
       nome: 'torneio do moacir',
       local: 'BSB',
-      Data: '10/10/20',
+      data: '10/10/20',
     },
   ];
   return (
     <Container className={classes.container}>
       <AppBar />
       <div className={classes.stylesdiv}>
-        {torneios.map((name) => {
-          console.log(name);
-          return <Card />;
+        {torneios.map((torneio, id) => {
+          return (
+            <Card
+              key={id}
+              nome={torneio.nome}
+              local={torneio.local}
+              data={torneio.data}
+            />
+          );
         })}
       </div>
       <div className={classes.footer}>
