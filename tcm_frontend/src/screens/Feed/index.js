@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from '@material-ui/core';
 import AppBar from '../../components/Appbar';
 import NavBar from '../../components/Navbar';
 import { useStyles } from './styles';
 import Card from '../../components/Card';
+import api from '../../services/api';
 
 const Feed = () => {
   const classes = useStyles();
+  const [torneiosapi, setorneiosapi] = useState([]);
+
+  function gettournament() {
+    api.get('tournament/feed').then((res) => {
+      setorneiosapi(res.tournament);
+    });
+  }
+
+  useEffect(() => {
+    gettournament();
+  }, []);
+
+  console.log(torneiosapi);
   const torneios = [
     {
       nome: 'torneio do cristo',
