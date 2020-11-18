@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { Typography, Container, Button } from '@material-ui/core';
@@ -7,7 +8,7 @@ import { useStyles } from './style';
 import tournament from '../../services/tournament';
 
 const SolicitationTournament = (props) => {
-  console.log(props.location.torneio);
+  // console.log(props.location.torneio);
   const classes = useStyles();
   const {
     nome,
