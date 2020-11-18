@@ -1,152 +1,67 @@
-import { makeStyles } from '@material-ui/core/styles';
+/* eslint-disable no-shadow */
+import { createMuiTheme, makeStyles } from '@material-ui/core';
 
-export const makestyles = makeStyles((theme) => ({
-  container: {
-    display: 'flex',
-    // width: '100%',
-    flexDirection: 'column',
-    padding: '0',
-    margin: '0',
-    backgroundColor: '#ffffff',
-  },
-
-  title: {
-    fontSize: '24px',
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: '30px',
-    fontWeight: 'bold',
-  },
-
-  formik_form: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-
-  formControl: {
-    alignItems: 'start',
-    display: 'flex',
-    margin: '2% 0px',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    borderBottom: '2px solid #000000',
-  },
-
-  select: {
-    fontSize: '18px',
-    border: 'none',
-    borderBottom: '2px solid #000000',
-    backgroundColor: '#ffffff',
-    margin: '2% 0px',
-    '&:before': {
-      borderColor: '#000',
+export const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#000',
     },
-    '&:after': {
-      borderColor: '#000',
+    secondary: {
+      main: '#000',
     },
-    '& .MuiInputLabel-root': {
-      color: '#000',
+    background: {
+      default: '#000',
     },
-    '& label.Mui-focused': {
-      color: '#000',
-    },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: '#000',
-    },
-    '& .MuiInput-underline:before': {
-      borderBottomColor: '#000',
-    },
-    '& .MuiInput-underline:hover': {
-      borderBottomColor: '#000',
-    },
-    '& .MuiInputBase-input': {
-      color: '#000',
+    text: {
+      primary: '#212121',
+      secondary: '#000',
     },
   },
+  shape: {
+    borderRadius: '5px',
+  },
+});
 
-  selectDate: {},
+export const button = createMuiTheme({
+  palette: {
+    primary: {
+      main: 'rgba(11, 198, 25, 0.8)',
+    },
+  },
+  shape: {
+    borderRadius: '5px',
+  },
+});
 
+export const useStyles = makeStyles((theme) => ({
   footer: theme.mixins.toolbar,
 
-  dateInput: {
-    color: '#000',
-    backgroundColor: '#FF0000',
+  name: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
   },
-
-  dateBox: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+  type: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
     width: '100%',
-    '& > :firstChild': {
-      width: '45%',
-      marginRight: '800px',
-    },
   },
-
-  dateBoxStartDate: {
-    fontSize: '18px',
-    border: 'none',
-    borderBottom: '2px solid #000000',
-    backgroundColor: '#ffffff',
-    margin: '2% 0px',
-    width: '48%',
-    '&:before': {
-      borderColor: '#000',
-    },
-    '&:after': {
-      borderColor: '#000',
-    },
-    '& .MuiInputLabel-root': {
-      color: '#000',
-    },
-    '& label.Mui-focused': {
-      color: '#000',
-    },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: '#000',
-    },
-    '& .MuiInput-underline:before': {
-      borderBottomColor: '#000',
-    },
-    '& .MuiInput-underline:hover': {
-      borderBottomColor: '#000',
-    },
-    '& .MuiInputBase-input': {
-      color: '#000',
-    },
+  address: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
   },
-  dateBoxFinishDate: {
-    fontSize: '18px',
-    border: 'none',
-    borderBottom: '2px solid #000000',
-    backgroundColor: '#ffffff',
-    margin: '2% 0px',
+  initDate: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+    marginRight: '2%',
     width: '48%',
-    marginLeft: '13px',
-    '&:before': {
-      borderColor: '#000',
-    },
-    '&:after': {
-      borderColor: '#000',
-    },
-    '& .MuiInputLabel-root': {
-      color: '#000',
-    },
-    '& label.Mui-focused': {
-      color: '#000',
-    },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: '#000',
-    },
-    '& .MuiInput-underline:before': {
-      borderBottomColor: '#000',
-    },
-    '& .MuiInput-underline:hover': {
-      borderBottomColor: '#000',
-    },
-    '& .MuiInputBase-input': {
-      color: '#000',
-    },
+  },
+  finishDate: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+    marginLeft: '2%',
+    width: '48%',
+  },
+  error: {
+    color: theme.palette.error.main,
   },
 }));

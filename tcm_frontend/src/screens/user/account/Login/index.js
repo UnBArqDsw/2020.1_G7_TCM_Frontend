@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useHistory } from 'react-router-dom';
 
 import {
   Button,
@@ -17,6 +17,8 @@ import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-material-ui';
 import { useStyles } from './style';
 
+import SessionService from '../../../../services/session';
+
 import Logo from '../../../../assets/logo2.svg';
 
 const contactSchema = Yup.object().shape({
@@ -29,11 +31,24 @@ const contactSchema = Yup.object().shape({
 });
 
 const Login = () => {
+  const history = useHistory();
+  const [error, setError] = useState('');
   const classes = useStyles();
   const initialValues = {
     email: '',
     password: '',
   };
+
+  const handleSubimit = async (data) => {
+    try {
+      await SessionService.signIn(data.email, data.password);
+      history.push('/feed');
+      setError('');
+    } catch (err) {
+      setError(err.response.data.message);
+    }
+  };
+
   return (
     <>
       <Grid className={classes.styleDiv}>
@@ -46,7 +61,7 @@ const Login = () => {
             <Formik
               initialValues={initialValues}
               validationSchema={contactSchema}
-              onSubmit={() => {}}
+              onSubmit={(data) => handleSubimit(data)}
             >
               {({ submitForm, isSubmitting }) => (
                 <Form style={{ width: '90%' }}>
@@ -69,6 +84,9 @@ const Login = () => {
                     fullWidth
                   />
                   {isSubmitting && <LinearProgress />}
+                  <Typography align="center" color="error">
+                    {error}
+                  </Typography>
                   <br />
                   <Button
                     className={classes.styleButton}
