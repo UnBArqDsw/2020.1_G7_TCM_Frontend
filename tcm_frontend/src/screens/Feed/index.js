@@ -36,18 +36,20 @@ const Feed = () => {
     <Container className={classes.container}>
       <AppBar />
       <div className={classes.stylesdiv}>
-        {torneios.map((torneio, id) => {
-          return (
-            <div key={id} onClick={() => handleOnClick(torneio)}>
-              <Card
-                nome={torneio.name}
-                cidade={torneio.cidade}
-                endereco={torneio.endereco}
-                data={torneio.data}
-              />
-            </div>
-          );
-        })}
+        {torneios !== []
+          ? torneios.map((torneio, id) => {
+              return (
+                <div key={id} onClick={() => handleOnClick(torneio)}>
+                  <Card
+                    nome={torneio.name}
+                    cidade={torneio.cidade}
+                    endereco={torneio.endereco}
+                    data={torneio.data}
+                  />
+                </div>
+              );
+            })
+          : null}
       </div>
       <div className={classes.footer}>
         <NavBar />
