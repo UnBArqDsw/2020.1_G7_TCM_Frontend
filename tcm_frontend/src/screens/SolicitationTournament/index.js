@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import { Typography, Container, Button } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import AppBar from '../../components/Appbar';
@@ -11,6 +11,7 @@ import tournament from '../../services/tournament';
 
 const SolicitationTournament = (props) => {
   // console.log(props.location.state);
+  const [error, setError] = useState('');
   const classes = useStyles();
   const {
     name,
@@ -26,8 +27,12 @@ const SolicitationTournament = (props) => {
   const history = useHistory();
 
   const solicitationLogic = async (tournamentId) => {
-    await tournament.solicitationTournament(tournamentId);
-    history.push('/feed');
+    try {
+      await tournament.solicitationTournament(tournamentId);
+      history.push('/feed');
+    } catch (err) {
+      setError(err.response.data.message);
+    }
   };
   return (
     <>
@@ -63,6 +68,9 @@ const SolicitationTournament = (props) => {
         >
           Solicitar inscrição
         </Button>
+        <Typography style={{ marginTop: 10 }} color="error">
+          {error}
+        </Typography>
       </Container>
       <div className={classes.footer} />
 
