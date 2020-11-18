@@ -1,22 +1,22 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
-  card: {
-    marginTop: '3vh',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: '3vh',
-    height: '20vh',
-    background: '#e0e0e0',
-  },
+  // card: {
+  //   marginTop: '3vh',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  //   margin: '3vh',
+  //   height: '20vh',
+  //   background: '#e0e0e0',
+  // },
   stylegrid: {
     justifyContent: 'center',
     alignItems: 'center',
   },
 
   avatar: {
-    width: '9vh',
-    height: '9vh',
+    width: '7vh',
+    height: '7vh',
     marginTop: '3vh',
     margin: '0 auto',
   },
@@ -29,8 +29,10 @@ export const useStyles = makeStyles((theme) => ({
     columnCount: '2',
   },
   stylefont: {
-    width: '50%',
-    margin: '0 auto',
+    // marginTop: '10%',
+    width: '40%',
+    // margin: 'auto',
+    marginLeft: '15%',
     [theme.breakpoints.down('sm')]: {
       fontSize: '0.9rem',
     },
@@ -40,5 +42,8 @@ export const useStyles = makeStyles((theme) => ({
   },
   stylecardcontent: {
     display: 'flex',
+  },
+  gridstyle: {
+    alignItems: 'center',
   },
 }));
