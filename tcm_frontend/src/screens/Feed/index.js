@@ -1,5 +1,9 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
 import { Container } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 import AppBar from '../../components/Appbar';
 import NavBar from '../../components/Navbar';
 import { useStyles } from './styles';
@@ -9,6 +13,7 @@ import api from '../../services/api';
 const Feed = () => {
   const classes = useStyles();
   const [torneios, setorneios] = useState([]);
+  const history = useHistory();
 
   function gettournament() {
     api.get('tournament/feed').then((res) => {
@@ -16,24 +21,31 @@ const Feed = () => {
     });
   }
 
+  function handleOnClick(torneio) {
+    history.push({
+      pathname: '/solicitation',
+      torneio,
+    });
+  }
+
   useEffect(() => {
     gettournament();
   }, []);
 
-  // console.log(torneios);
   return (
     <Container className={classes.container}>
       <AppBar />
       <div className={classes.stylesdiv}>
         {torneios.map((torneio, id) => {
           return (
-            <Card
-              key={id}
-              nome={torneio.name}
-              cidade={torneio.cidade}
-              endereco={torneio.endereco}
-              data={torneio.data}
-            />
+            <div key={id} onClick={() => handleOnClick(torneio)}>
+              <Card
+                nome={torneio.name}
+                cidade={torneio.cidade}
+                endereco={torneio.endereco}
+                data={torneio.data}
+              />
+            </div>
           );
         })}
       </div>

@@ -7,6 +7,7 @@ import { useStyles } from './style';
 import tournament from '../../services/tournament';
 
 const SolicitationTournament = (props) => {
+  console.log(props.location.torneio);
   const classes = useStyles();
   const {
     nome,
