@@ -58,6 +58,14 @@ export const useStyles = makeStyles(() => ({
     backgroundColor: '#cccccc',
     height: '100px',
     width: '100px',
+    '&::placeholder': {
+      display: 'flex',
+      opacity: '1',
+      textAlign: 'center',
+      paddingTop: '20%',
+      fontSize: '50px',
+      fontWeight: 'bold',
+    },
   },
   playerScoreBoxText: {
     display: 'flex',

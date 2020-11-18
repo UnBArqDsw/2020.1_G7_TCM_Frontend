@@ -15,18 +15,22 @@ const MatchResult = () => {
         <p className={classes.title}>Insira o resultado da partida (sets)</p>
         <div className={classes.scoreBoard}>
           <div className={classes.playerScore}>
-            <div className={classes.playerScoreBox}>
-              <p className={classes.playerScoreBoxText}>0</p>
-            </div>
+            <input
+              type="text"
+              placeholder="0"
+              className={classes.playerScoreBox}
+            />
             <p className={classes.playerScoreText}>Jogador 1</p>
           </div>
 
           <p className={classes.playerScoreSeparator}>X</p>
 
           <div className={classes.playerScore}>
-            <div className={classes.playerScoreBox}>
-              <p className={classes.playerScoreBoxText}>0</p>
-            </div>
+            <input
+              type="text"
+              placeholder="0"
+              className={classes.playerScoreBox}
+            />
             <p className={classes.playerScoreText}>Jogador 2</p>
           </div>
         </div>
