@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { Typography, Container, Button } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 import AppBar from '../../components/Appbar';
 import NavBar from '../../components/Navbar';
 import { useStyles } from './style';
@@ -19,8 +20,14 @@ const SolicitationTournament = (props) => {
     endereco,
     players_quantity,
     description,
-    tournamentId,
+    id,
   } = props.location.state.torneio;
+  const history = useHistory();
+
+  const solicitationLogic = async (tournamentId) => {
+    await tournament.solicitationTournament(tournamentId);
+    history.push('/feed');
+  };
   return (
     <Container className={classes.container}>
       <AppBar />
@@ -50,7 +57,7 @@ const SolicitationTournament = (props) => {
         <Button
           fullWidth
           className={classes.styleButton}
-          onClick={() => tournament.solicitationTournament(tournamentId)}
+          onClick={() => solicitationLogic(id)}
           variant="contained"
         >
           Solicitar inscrição
