@@ -52,7 +52,7 @@ const SolicitationTournament = (props) => {
         <Typography className={classes.stylefont}>
           {`Numero de jogadores:${players_quantity}`}
         </Typography>
-        <Typography className={classes.stylefont}>
+        <Typography align="justify" className={classes.stylefont}>
           {`Descrição:${description}`}
         </Typography>
         <Button
