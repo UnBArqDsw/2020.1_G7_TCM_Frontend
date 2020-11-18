@@ -2,7 +2,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
-import { Container } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import AppBar from '../../components/Appbar';
 import NavBar from '../../components/Navbar';
@@ -23,8 +22,8 @@ const Feed = () => {
 
   function handleOnClick(torneio) {
     history.push({
-      pathname: '/solicitation',
-      torneio,
+      pathname: `/solicitation/${torneio.id}`,
+      state: { torneio },
     });
   }
 
@@ -33,7 +32,7 @@ const Feed = () => {
   }, []);
 
   return (
-    <Container className={classes.container}>
+    <>
       <AppBar />
       <div className={classes.stylesdiv}>
         {torneios !== []
@@ -50,11 +49,10 @@ const Feed = () => {
               );
             })
           : null}
+        <div className={classes.footer} />
       </div>
-      <div className={classes.footer}>
-        <NavBar />
-      </div>
-    </Container>
+      <NavBar />
+    </>
   );
 };
 
