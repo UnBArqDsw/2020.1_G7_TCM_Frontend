@@ -8,24 +8,24 @@ import { useStyles } from './style';
 import tournament from '../../services/tournament';
 
 const SolicitationTournament = (props) => {
-  // console.log(props.location.torneio);
+  console.log(props.location.state);
   const classes = useStyles();
   const {
-    nome,
-    inicio,
-    termino,
+    name,
+    start_date,
+    end_date,
     estado,
     cidade,
     endereco,
-    numeroDeJogadores,
-    descricao,
+    players_quantity,
+    description,
     tournamentId,
-  } = props;
+  } = props.location.state.torneio;
   return (
     <Container className={classes.container}>
       <AppBar />
       <Container className={classes.stylecontainer}>
-        <Typography className={classes.stylefont}>{`Nome:${nome}`}</Typography>
+        <Typography className={classes.stylefont}>{`Nome:${name}`}</Typography>
         <Typography className={classes.stylefont}>
           {`Estado:${estado}`}
         </Typography>
@@ -36,16 +36,16 @@ const SolicitationTournament = (props) => {
           {`Endereço:${endereco}`}
         </Typography>
         <Typography className={classes.stylefont}>
-          {`Inicio:${inicio}`}
+          {`Inicio:${start_date}`}
         </Typography>
         <Typography className={classes.stylefont}>
-          {`Termino:${termino}`}
+          {`Termino:${end_date}`}
         </Typography>
         <Typography className={classes.stylefont}>
-          {`Numero de jogadores:${numeroDeJogadores}`}
+          {`Numero de jogadores:${players_quantity}`}
         </Typography>
         <Typography className={classes.stylefont}>
-          {`Descrição:${descricao}`}
+          {`Descrição:${description}`}
         </Typography>
         <Button
           fullWidth
