@@ -23,7 +23,7 @@ const Routes = () => {
       <Route path="/teste" component={ButtonBox} />
       <Route path="/stats" component={Stats} />
       <Route path="/mytournament" component={MyTournament} />
-      <Route path="/solicitation" component={SolicitationTournament} />
+      <Route path="/solicitation/:id" component={SolicitationTournament} />
     </Switch>
   );
 };
