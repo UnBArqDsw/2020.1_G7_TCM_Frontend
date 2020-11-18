@@ -11,6 +11,7 @@ import ButtonBox from './components/ButtonClearOrCheck';
 import Stats from './screens/tournament/Stats';
 import MyTournament from './screens/tournament/Mytournament';
 import SolicitationTournament from './screens/SolicitationTournament';
+import MatchResult from './screens/tournament/MatchResult';
 
 const Routes = () => {
   return (
@@ -23,6 +24,7 @@ const Routes = () => {
       <Route path="/teste" component={ButtonBox} />
       <Route path="/stats" component={Stats} />
       <Route path="/mytournament" component={MyTournament} />
+      <Route path="/match_result" component={MatchResult} />
       <Route path="/solicitation/:id" component={SolicitationTournament} />
     </Switch>
   );
