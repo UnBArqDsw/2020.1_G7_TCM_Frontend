@@ -30,7 +30,7 @@ const SolicitationTournament = (props) => {
     history.push('/feed');
   };
   return (
-    <Container className={classes.container}>
+    <>
       <AppBar />
       <Container className={classes.stylecontainer}>
         <Typography className={classes.stylefont}>{`Nome:${name}`}</Typography>
@@ -64,10 +64,10 @@ const SolicitationTournament = (props) => {
           Solicitar inscrição
         </Button>
       </Container>
-      <div className={classes.footer}>
-        <NavBar />
-      </div>
-    </Container>
+      <div className={classes.footer} />
+
+      <NavBar />
+    </>
   );
 };
 
