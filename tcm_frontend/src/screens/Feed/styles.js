@@ -1,12 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles(() => ({
-  footer: {
-    overflow: 'hidden',
-    position: 'fixed',
-    bottom: '0',
-    width: '100%',
-  },
+export const useStyles = makeStyles((theme) => ({
+  footer: theme.mixins.toolbar,
   container: {
     flexGrow: 1,
     height: '100%',
