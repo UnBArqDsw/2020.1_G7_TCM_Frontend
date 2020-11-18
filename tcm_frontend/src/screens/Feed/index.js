@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
-=======
-/* eslint-disable react/no-array-index-key */
-import React from 'react';
->>>>>>> 2641f71ef2f955a9eb26c8c91cb6e5c57f6baafb
 import { Container } from '@material-ui/core';
 import AppBar from '../../components/Appbar';
 import NavBar from '../../components/Navbar';
@@ -13,11 +8,11 @@ import api from '../../services/api';
 
 const Feed = () => {
   const classes = useStyles();
-  const [torneiosapi, setorneiosapi] = useState([]);
+  const [torneios, setorneios] = useState([]);
 
   function gettournament() {
     api.get('tournament/feed').then((res) => {
-      setorneiosapi(res.tournament);
+      setorneios(res.data.tournament);
     });
   }
 
@@ -25,19 +20,7 @@ const Feed = () => {
     gettournament();
   }, []);
 
-  console.log(torneiosapi);
-  const torneios = [
-    {
-      nome: 'torneio do cristo',
-      local: 'BSB',
-      data: '10/10/20',
-    },
-    {
-      nome: 'torneio do moacir',
-      local: 'BSB',
-      data: '10/10/20',
-    },
-  ];
+  // console.log(torneios);
   return (
     <Container className={classes.container}>
       <AppBar />
@@ -46,8 +29,9 @@ const Feed = () => {
           return (
             <Card
               key={id}
-              nome={torneio.nome}
-              local={torneio.local}
+              nome={torneio.name}
+              cidade={torneio.cidade}
+              endereco={torneio.endereco}
               data={torneio.data}
             />
           );

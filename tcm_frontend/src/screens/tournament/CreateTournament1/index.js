@@ -53,7 +53,7 @@ const CreateTournament1 = () => {
       .get('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
       .then((response) => setState(response.data));
   };
-
+  console.log(error);
   const fetchCity = async () => {
     await axios
       .get(
