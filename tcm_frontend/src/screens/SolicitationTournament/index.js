@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
@@ -9,7 +10,7 @@ import { useStyles } from './style';
 import tournament from '../../services/tournament';
 
 const SolicitationTournament = (props) => {
-  console.log(props.location.state);
+  // console.log(props.location.state);
   const classes = useStyles();
   const {
     name,
