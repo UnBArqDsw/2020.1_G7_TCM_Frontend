@@ -3,11 +3,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { MoreVert } from '@material-ui/icons';
 import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import { useHistory } from 'react-router-dom';
+import session from '../../services/session';
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -34,14 +35,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Appbar() {
   const classes = useStyles();
-  const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const history = useHistory();
 
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
-
+  function handleLogout() {
+    session.signOut().then(history.push('/'));
+  }
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -80,8 +80,8 @@ export default function Appbar() {
             open={open}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}>Perfil</MenuItem>
-            <MenuItem onClick={handleClose}>Sair</MenuItem>
+            <MenuItem onClick={() => history.push('/profile')}>Perfil</MenuItem>
+            <MenuItem onClick={() => handleLogout()}>Sair</MenuItem>
           </Menu>
         </Toolbar>
       </AppBar>
