@@ -1,10 +1,29 @@
 import React from 'react';
+import { Card } from '@material-ui/core';
 import Opponents from '../Opponents/index';
+import { useStyles } from './styles';
 
 const CardAversary = () => {
+  const classes = useStyles();
+
   return (
     <div>
-      <Opponents />
+      <Card className={classes.card}>
+        <Opponents />
+        <Opponents />
+      </Card>
+      <Card className={classes.card}>
+        <Opponents />
+        <Opponents />
+      </Card>
+      <Card className={classes.card}>
+        <Opponents />
+        <Opponents />
+      </Card>
+      <Card className={classes.card}>
+        <Opponents />
+        <Opponents />
+      </Card>
     </div>
   );
 };
