@@ -8,7 +8,7 @@ import { useStyles } from './styles';
 
 const Feed = (props) => {
   const classes = useStyles();
-  const { nome, cidade, endereco, data } = props;
+  const { nome, cidade, local, data } = props;
   return (
     <Card className={classes.card}>
       <CardContent className={classes.stylecardcontent}>
@@ -20,7 +20,7 @@ const Feed = (props) => {
           </Typography>
           <Typography className={classes.stylefont}>
             Local:
-            {`${cidade}-${endereco}`}
+            {`${cidade}-${local}`}
           </Typography>
           <Typography className={classes.stylefont}>
             Data:
