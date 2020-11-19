@@ -62,6 +62,7 @@ const SolicitationTournament = (props) => {
         </Typography>
         <Button
           fullWidth
+          color="primary"
           className={classes.styleButton}
           onClick={() => solicitationLogic(id)}
           variant="contained"

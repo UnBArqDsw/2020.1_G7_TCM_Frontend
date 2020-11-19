@@ -1,6 +1,10 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/jsx-curly-newline */
 import React from 'react';
 
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { IsAuthenticated } from './auth';
 
 import Login from './screens/user/account/Login';
 import SignUp from './screens/user/account/SignUp';
@@ -13,19 +17,35 @@ import MyTournament from './screens/tournament/Mytournament';
 import SolicitationTournament from './screens/SolicitationTournament';
 import ViewTournamentInfo from './screens/tournament/ViewTournamentInfo';
 
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      IsAuthenticated() ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+      )
+    }
+  />
+);
+
 const Routes = () => {
   return (
     <Switch>
       <Route exact path="/" component={Login} />
       <Route path="/signup" component={SignUp} />
-      <Route path="/profile" component={Profile} />
-      <Route path="/create_tournament" component={CreateTournament1} />
-      <Route path="/feed" component={Feed} />
-      <Route path="/teste" component={ButtonBox} />
-      <Route path="/stats" component={Stats} />
-      <Route path="/mytournament" component={MyTournament} />
-      <Route path="/solicitation/:id" component={SolicitationTournament} />
-      <Route path="/tournament/:id" component={ViewTournamentInfo} />
+      <PrivateRoute path="/profile" component={Profile} />
+      <PrivateRoute path="/create_tournament" component={CreateTournament1} />
+      <PrivateRoute path="/feed" component={Feed} />
+      <PrivateRoute path="/teste" component={ButtonBox} />
+      <PrivateRoute path="/stats" component={Stats} />
+      <PrivateRoute path="/tournament/:id" component={ViewTournamentInfo} />
+      <PrivateRoute path="/mytournament" component={MyTournament} />
+      <PrivateRoute
+        path="/solicitation/:id"
+        component={SolicitationTournament}
+      />
     </Switch>
   );
 };
