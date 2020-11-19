@@ -11,6 +11,11 @@ class Tournament {
     const response = await api.post(`/solicitation/${tournamentId}`);
     return response;
   }
+
+  async acceptSolicitation(tournamentId, requester) {
+    const response = await api.post(`/accept/${tournamentId}`, { requester });
+    return response;
+  }
 }
 
 export default new Tournament();
