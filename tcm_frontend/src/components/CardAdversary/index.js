@@ -10,18 +10,20 @@ const CardAversary = () => {
     <div>
       <Card className={classes.card}>
         <Opponents />
+      </Card>
+      <Card className={classes.card}>
         <Opponents />
       </Card>
       <Card className={classes.card}>
         <Opponents />
+      </Card>
+      <Card className={classes.card}>
         <Opponents />
       </Card>
       <Card className={classes.card}>
         <Opponents />
-        <Opponents />
       </Card>
       <Card className={classes.card}>
-        <Opponents />
         <Opponents />
       </Card>
     </div>

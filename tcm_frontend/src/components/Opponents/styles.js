@@ -30,7 +30,7 @@ export const useStyles = makeStyles((theme) => ({
     columnCount: '2',
   },
   stylefont: {
-    marginTop: '10%',
+    // marginTop: '10%',
     // width: '40%',
     // margin: 'auto',
     marginLeft: '15%',
