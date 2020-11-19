@@ -62,6 +62,7 @@ const SolicitationTournament = (props) => {
         </Typography>
         <Button
           fullWidth
+          style={{ color: '#fff' }}
           color="primary"
           className={classes.styleButton}
           onClick={() => solicitationLogic(id)}

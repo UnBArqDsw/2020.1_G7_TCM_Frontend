@@ -24,6 +24,7 @@ const contactSchema = Yup.object().shape({
   nickname: Yup.string('nickname Inválido')
     .required('nickname é obrigatório')
     .min(3, 'Deve conter pelo menos 3 caracteres')
+    .max(12, 'Deve conter no máximo 12 caracteres')
     .matches(/^[0-9a-zA-Z][0-9a-zA-Z]*$/, 'Não utilize caracteres epeciais'),
   name: Yup.string('Nome Inválido')
     .required('Nome é obrigatório')
