@@ -15,6 +15,7 @@ import ButtonBox from './components/ButtonClearOrCheck';
 import Stats from './screens/tournament/Stats';
 import MyTournament from './screens/tournament/Mytournament';
 import SolicitationTournament from './screens/SolicitationTournament';
+import ViewTournamentInfo from './screens/tournament/ViewTournamentInfo';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -39,6 +40,7 @@ const Routes = () => {
       <PrivateRoute path="/feed" component={Feed} />
       <PrivateRoute path="/teste" component={ButtonBox} />
       <PrivateRoute path="/stats" component={Stats} />
+      <PrivateRoute path="/tournament/:id" component={ViewTournamentInfo} />
       <PrivateRoute path="/mytournament" component={MyTournament} />
       <PrivateRoute
         path="/solicitation/:id"
