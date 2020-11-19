@@ -81,7 +81,7 @@ const MyTournament = () => {
                   <Card
                     nome={name}
                     cidade={cidade}
-                    local={endereco}
+                    endereco={endereco}
                     data={start_date}
                   />
                 </Link>
