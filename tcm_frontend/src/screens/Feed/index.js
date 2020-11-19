@@ -1,44 +1,58 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/no-array-index-key */
-import React from 'react';
-import { Container } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import AppBar from '../../components/Appbar';
 import NavBar from '../../components/Navbar';
 import { useStyles } from './styles';
 import Card from '../../components/Card';
+import api from '../../services/api';
 
 const Feed = () => {
   const classes = useStyles();
-  const torneios = [
-    {
-      nome: 'torneio do cristo',
-      local: 'BSB',
-      data: '10/10/20',
-    },
-    {
-      nome: 'torneio do moacir',
-      local: 'BSB',
-      data: '10/10/20',
-    },
-  ];
+  const [torneios, setorneios] = useState([]);
+  const history = useHistory();
+
+  function gettournament() {
+    api.get('tournament/feed').then((res) => {
+      setorneios(res.data.tournament);
+    });
+  }
+
+  function handleOnClick(torneio) {
+    history.push({
+      pathname: `/solicitation/${torneio.id}`,
+      state: { torneio },
+    });
+  }
+
+  useEffect(() => {
+    gettournament();
+  }, []);
+
   return (
-    <Container className={classes.container}>
+    <>
       <AppBar />
       <div className={classes.stylesdiv}>
-        {torneios.map((torneio, id) => {
-          return (
-            <Card
-              key={id}
-              nome={torneio.nome}
-              local={torneio.local}
-              data={torneio.data}
-            />
-          );
-        })}
+        {torneios !== []
+          ? torneios.map((torneio, id) => {
+              return (
+                <div key={id} onClick={() => handleOnClick(torneio)}>
+                  <Card
+                    nome={torneio.name}
+                    cidade={torneio.cidade}
+                    endereco={torneio.endereco}
+                    data={torneio.data}
+                  />
+                </div>
+              );
+            })
+          : null}
+        <div className={classes.footer} />
       </div>
-      <div className={classes.footer}>
-        <NavBar />
-      </div>
-    </Container>
+      <NavBar />
+    </>
   );
 };
 

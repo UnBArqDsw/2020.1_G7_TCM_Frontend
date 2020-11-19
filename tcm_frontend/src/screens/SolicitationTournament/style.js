@@ -1,12 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 
 export const useStyles = makeStyles((theme) => ({
-  footer: {
-    overflow: 'hidden',
-    position: 'fixed',
-    bottom: '0',
-    width: '100%',
-  },
+  footer: theme.mixins.toolbar,
   container: {
     flexGrow: 1,
     height: '100%',
@@ -34,7 +29,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   stylefont: {
     [theme.breakpoints.down('sm')]: {
-      fontSize: '0.9rem',
+      fontSize: '1.15rem',
     },
     [theme.breakpoints.up('sm')]: {
       fontSize: '2rem',
