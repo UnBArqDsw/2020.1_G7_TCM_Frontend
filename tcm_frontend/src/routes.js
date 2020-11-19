@@ -11,6 +11,7 @@ import ButtonBox from './components/ButtonClearOrCheck';
 import Stats from './screens/tournament/Stats';
 import MyTournament from './screens/tournament/Mytournament';
 import SolicitationTournament from './screens/SolicitationTournament';
+import ViewTournamentInfo from './screens/tournament/ViewTournamentInfo';
 
 const Routes = () => {
   return (
@@ -24,6 +25,7 @@ const Routes = () => {
       <Route path="/stats" component={Stats} />
       <Route path="/mytournament" component={MyTournament} />
       <Route path="/solicitation/:id" component={SolicitationTournament} />
+      <Route path="/tournament/:id" component={ViewTournamentInfo} />
     </Switch>
   );
 };
