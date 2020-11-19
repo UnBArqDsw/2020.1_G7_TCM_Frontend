@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-export const useStyles = makeStyles(() => ({
+export const useStyles = makeStyles((theme) => ({
   styleDiv: {
     height: '100%',
     margin: '0',
@@ -12,4 +12,5 @@ export const useStyles = makeStyles(() => ({
     width: '50%',
     marginLeft: '25%',
   },
+  footer: theme.mixins.toolbar,
 }));
