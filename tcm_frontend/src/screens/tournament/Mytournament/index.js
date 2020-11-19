@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Link } from '@material-ui/core';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import { useHistory } from 'react-router-dom';
 import AppBar from '../../../components/Appbar';
 import NavBar from '../../../components/Navbar';
 import Card from '../../../components/Card';
@@ -13,6 +14,7 @@ import { useStyles } from './styles';
 import api from '../../../services/api';
 
 const MyTournament = () => {
+  const history = useHistory();
   const styles = useStyles();
   const [createdList, dsetCreatedList] = useState([]);
   const [participationList, setParticipationList] = useState([]);
@@ -37,7 +39,19 @@ const MyTournament = () => {
     setValue(newValue);
   };
 
-  const handleClick = () => {};
+  const managerTournamanet = (tournament) => {
+    history.push({
+      pathname: `/tournament/${tournament.id}`,
+      state: { tournament, ismanager: true },
+    });
+  };
+
+  const registredTournamanet = (tournament) => {
+    history.push({
+      pathname: `/tournament/${tournament.tournaments.id}`,
+      state: { tournament: tournament.tournaments, ismanager: false },
+    });
+  };
 
   return (
     <>
@@ -64,11 +78,11 @@ const MyTournament = () => {
                 cidade,
               } = tournament.tournaments;
               return (
-                <Link key={id} onClick={() => handleClick()}>
+                <Link key={id} onClick={() => registredTournamanet(tournament)}>
                   <Card
                     nome={name}
                     cidade={cidade}
-                    local={endereco}
+                    endereco={endereco}
                     data={start_date}
                   />
                 </Link>
@@ -77,7 +91,7 @@ const MyTournament = () => {
           : createdList.map((tournament) => {
               const { name, endereco, start_date, cidade, id } = tournament;
               return (
-                <Link key={id} onClick={() => handleClick()}>
+                <Link key={id} onClick={() => managerTournamanet(tournament)}>
                   <Card
                     nome={name}
                     cidade={cidade}
