@@ -3,7 +3,7 @@ import api from './api';
 
 class User {
   async findById(data) {
-    const response = await api.get(`/user/${data}`);
+    const response = await api.get(`/users/${data}`);
     return response;
   }
 }
