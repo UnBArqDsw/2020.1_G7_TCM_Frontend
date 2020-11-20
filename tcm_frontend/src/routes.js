@@ -17,6 +17,7 @@ import MyTournament from './screens/tournament/Mytournament';
 import SolicitationTournament from './screens/SolicitationTournament';
 import ViewTournament from './screens/tournament/ViewTournament';
 import ViewTournamentInfo from './screens/tournament/ViewTournamentInfo';
+import MatchResult from './screens/tournament/MatchResult';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -43,6 +44,7 @@ const Routes = () => {
       <PrivateRoute path="/stats" component={Stats} />
       <PrivateRoute path="/tournament/:id" component={ViewTournamentInfo} />
       <PrivateRoute path="/mytournament" component={MyTournament} />
+      <PrivateRoute path="/match_result" component={MatchResult} />
       <PrivateRoute path="/viewtournament" component={ViewTournament} />
       <PrivateRoute
         path="/solicitation/:id"
