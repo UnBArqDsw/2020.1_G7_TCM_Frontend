@@ -7,7 +7,7 @@ import { useStyles } from './styles';
 
 const Opponents = (props) => {
   const classes = useStyles();
-  const { matchid } = props;
+  // const { matchid } = props;
 
   return (
     <Grid container className={classes.stylegrid} spacing={10}>
