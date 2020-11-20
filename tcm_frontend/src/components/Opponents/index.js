@@ -5,8 +5,9 @@ import Grid from '@material-ui/core/Grid';
 import ClearIcon from '@material-ui/icons/Clear';
 import { useStyles } from './styles';
 
-const Opponents = () => {
+const Opponents = (props) => {
   const classes = useStyles();
+  const { matchid } = props;
 
   return (
     <Grid container className={classes.stylegrid} spacing={10}>
