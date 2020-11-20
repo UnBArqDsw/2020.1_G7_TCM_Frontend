@@ -17,7 +17,7 @@ const CardAversary = () => {
   useEffect(() => {
     getround();
   }, []);
-  console.log(matchs);
+  // console.log(matchs);
   return (
     <div>
       {matchs !== []

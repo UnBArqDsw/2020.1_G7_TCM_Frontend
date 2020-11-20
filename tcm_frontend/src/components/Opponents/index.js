@@ -7,21 +7,21 @@ import { useStyles } from './styles';
 
 const Opponents = (props) => {
   const classes = useStyles();
-  // const { matchid } = props;
+  const { player1, player2 } = props.match;
 
   return (
     <Grid container className={classes.stylegrid} spacing={10}>
       <Grid item className={classes.gridstyle}>
-        <Avatar className={classes.avatar}>M</Avatar>
+        <Avatar className={classes.avatar}>{player1.name[0]}</Avatar>
         <Typography align="center" gutterBottom className={classes.stylefont}>
-          Estanislau
+          {player1.name}
         </Typography>
       </Grid>
       <ClearIcon />
       <Grid item>
-        <Avatar className={classes.avatar}>L</Avatar>
+        <Avatar className={classes.avatar}>{player1.name[0]}</Avatar>
         <Typography align="center" className={classes.stylefont}>
-          joao
+          {player2.name}
         </Typography>
       </Grid>
       <Container className={classes.stylecontainer} />
