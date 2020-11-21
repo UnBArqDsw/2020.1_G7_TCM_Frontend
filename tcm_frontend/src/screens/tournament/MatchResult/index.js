@@ -33,7 +33,6 @@ const MatchResult = ({ location }) => {
     } else {
       winner_id = player2.id;
     }
-    console.log(winner_id);
     const body = {
       winner_id,
       match_id: id,

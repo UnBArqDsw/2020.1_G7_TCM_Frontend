@@ -8,6 +8,7 @@ import { useStyles } from './styles';
 
 const ViewTournament = ({ location }) => {
   const { rounds, id } = location.state;
+  console.log(rounds);
   const classe = useStyles();
 
   return (

@@ -70,7 +70,7 @@ function ViewTournamentInfo({ location }) {
 
   const initTournament = async (tournamentId) => {
     console.log(tournamentId);
-    await api.get(`/generationround/${tournamentId}`);
+    await api.post(`/generationround/${tournamentId}`);
   };
 
   return (

@@ -34,12 +34,16 @@ const CardAversary = ({ rounds, idtournament }) => {
 
   useEffect(() => {
     getRounds();
-    matchs.map((match) => {
-      if (match.status === 'C') {
-        setroundnotened(true);
-      }
-    });
   }, []);
+
+  let aux1 = false;
+  matchs.map((match) => {
+    console.log(match.status);
+
+    if (match.status === 'C') {
+      aux1 = true;
+    }
+  });
 
   function handleOnClick(match) {
     history.push({
@@ -50,7 +54,10 @@ const CardAversary = ({ rounds, idtournament }) => {
 
   const generationNextRound = async (tournamentId) => {
     // console.log(tournamentId);
-    await api.post(`/generationnextround/${tournamentId}`);
+    const name = 'teste';
+    await api.post(`/generationnextround/${tournamentId}`, {
+      name,
+    });
   };
 
   return (
@@ -66,7 +73,7 @@ const CardAversary = ({ rounds, idtournament }) => {
             );
           })
         : null}
-      {roundnotened === false ? (
+      {aux1 === false ? (
         <Button
           style={{ marginBottom: '10px', marginTop: '20px' }}
           color="primary"
