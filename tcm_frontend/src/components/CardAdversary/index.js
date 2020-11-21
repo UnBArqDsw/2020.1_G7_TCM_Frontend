@@ -6,17 +6,20 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useEffect, useState } from 'react';
-import { Card } from '@material-ui/core';
+import { Card, Button } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import Opponents from '../Opponents/index';
 import { useStyles } from './styles';
 import api from '../../services/api';
 
-const CardAversary = ({ rounds }) => {
+const CardAversary = ({ rounds, idtournament }) => {
   const classes = useStyles();
   const [matchs, setmatchs] = useState([]);
+  const [roundnotened, setroundnotened] = useState(false);
+
   const history = useHistory();
   const aux = [];
+
   rounds.map((rounds) => {
     aux.push(rounds.id);
   });
@@ -25,13 +28,17 @@ const CardAversary = ({ rounds }) => {
 
   const getRounds = async () => {
     await api.get(`round/${lastItem}`).then((res) => {
-      console.log(res.data);
       setmatchs(res.data.matchs_list);
     });
   };
 
   useEffect(() => {
     getRounds();
+    matchs.map((match) => {
+      if (match.status === 'C') {
+        setroundnotened(true);
+      }
+    });
   }, []);
 
   function handleOnClick(match) {
@@ -40,6 +47,11 @@ const CardAversary = ({ rounds }) => {
       state: { match },
     });
   }
+
+  const generationNextRound = async (tournamentId) => {
+    // console.log(tournamentId);
+    await api.post(`/generationnextround/${tournamentId}`);
+  };
 
   return (
     <div>
@@ -54,6 +66,17 @@ const CardAversary = ({ rounds }) => {
             );
           })
         : null}
+      {roundnotened === false ? (
+        <Button
+          style={{ marginBottom: '10px', marginTop: '20px' }}
+          color="primary"
+          variant="outlined"
+          fullWidth
+          onClick={() => generationNextRound(idtournament)}
+        >
+          Gerar proximo round
+        </Button>
+      ) : null}
     </div>
   );
 };
