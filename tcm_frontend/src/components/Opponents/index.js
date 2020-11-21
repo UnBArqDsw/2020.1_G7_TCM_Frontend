@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import { Typography, Container } from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
-import Grid from '@material-ui/core/Grid';
 import ClearIcon from '@material-ui/icons/Clear';
 import { useStyles } from './styles';
 
@@ -9,23 +10,47 @@ const Opponents = (props) => {
   const classes = useStyles();
   const { player1, player2 } = props.match;
 
+  const name1 = player1.name.split(' ', 1);
+  const name2 = player2.name.split(' ', 1);
   return (
-    <Grid container className={classes.stylegrid} spacing={10}>
-      <Grid item className={classes.gridstyle}>
-        <Avatar className={classes.avatar}>{player1.name[0]}</Avatar>
+    <Box
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        height: '100%',
+        padding: '20px',
+      }}
+    >
+      <Box
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar className={classes.avatar}>{name1[0][0]}</Avatar>
         <Typography align="center" gutterBottom className={classes.stylefont}>
-          {player1.name}
+          {name1}
         </Typography>
-      </Grid>
+      </Box>
       <ClearIcon />
-      <Grid item>
-        <Avatar className={classes.avatar}>{player1.name[0]}</Avatar>
+      <Box
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar className={classes.avatar}>{name2[0][0]}</Avatar>
         <Typography align="center" className={classes.stylefont}>
-          {player2.name}
+          {name2}
         </Typography>
-      </Grid>
-      <Container className={classes.stylecontainer} />
-    </Grid>
+      </Box>
+    </Box>
   );
 };
 export default Opponents;
