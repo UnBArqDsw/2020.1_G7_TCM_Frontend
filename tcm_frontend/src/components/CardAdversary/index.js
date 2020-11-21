@@ -1,3 +1,8 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable react/prop-types */
+/* eslint-disable no-shadow */
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable no-restricted-globals */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useEffect, useState } from 'react';
@@ -7,19 +12,26 @@ import Opponents from '../Opponents/index';
 import { useStyles } from './styles';
 import api from '../../services/api';
 
-const CardAversary = () => {
+const CardAversary = ({ rounds }) => {
   const classes = useStyles();
-  const roundid = '11c44eda-60ff-49f5-bec6-e1f2725adcdd';
   const [matchs, setmatchs] = useState([]);
   const history = useHistory();
-  function getround() {
-    api.get(`round/${roundid}`).then((res) => {
+  const aux = [];
+  rounds.map((rounds) => {
+    aux.push(rounds.id);
+  });
+
+  const [lastItem] = aux.slice(-1);
+
+  const getRounds = async () => {
+    await api.get(`round/${lastItem}`).then((res) => {
+      console.log(res.data);
       setmatchs(res.data.matchs_list);
     });
-  }
+  };
 
   useEffect(() => {
-    getround();
+    getRounds();
   }, []);
 
   function handleOnClick(match) {

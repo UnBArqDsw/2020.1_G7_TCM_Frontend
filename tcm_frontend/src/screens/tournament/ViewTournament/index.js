@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { Container } from '@material-ui/core';
 import Appbar from '../../../components/Appbar';
@@ -5,7 +6,9 @@ import Navbar from '../../../components/Navbar';
 import CardAdversary from '../../../components/CardAdversary';
 import { useStyles } from './styles';
 
-const ViewTournament = () => {
+const ViewTournament = ({ location }) => {
+  const { rounds } = location.state;
+
   const classe = useStyles();
   return (
     <>
@@ -13,7 +16,7 @@ const ViewTournament = () => {
         <div>
           <Appbar />
         </div>
-        <CardAdversary />
+        <CardAdversary rounds={rounds} />
         <div className={classe.footer} />
       </Container>
       <Navbar />

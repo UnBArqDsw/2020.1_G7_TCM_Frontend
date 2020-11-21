@@ -2,6 +2,8 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 
+import { useHistory } from 'react-router-dom';
+
 import {
   Typography,
   Button,
@@ -16,7 +18,9 @@ import Tournament from '../../../services/tournament';
 import { button, useStyles } from './style';
 
 function ViewTournamentInfo({ location }) {
+  const history = useHistory();
   const classes = useStyles();
+  const [accepted, setAccepted] = useState(false);
   const [hideSolicitation, setHideSolicitation] = useState(true);
   const [hideParticipant, setHideParticipant] = useState(true);
   const [players, setPlayers] = useState([]);
@@ -30,11 +34,14 @@ function ViewTournamentInfo({ location }) {
 
   const searchParticipantsName = async () => {
     const aux = [];
-    participants.map(async (participant) => {
-      const response = await User.findById(participant.players);
-      aux.push(response.data.user.name);
-    });
-    setPlayers(aux);
+    if (participants !== undefined) {
+      participants.map(async (participant) => {
+        await User.findById(participant.players).then((response) =>
+          aux.push(response.data),
+        );
+      });
+      setPlayers(aux);
+    }
   };
 
   useEffect(() => {
@@ -49,8 +56,17 @@ function ViewTournamentInfo({ location }) {
   };
 
   const handleAccept = async (user) => {
-    await Tournament.acceptSolicitation(id, user);
+    try {
+      await Tournament.acceptSolicitation(id, user).then(setAccepted(true));
+    } catch (err) {
+      setAccepted(false);
+    }
   };
+
+  const showRounds = (tournament) => {
+    history.push({ pathname: '/viewtournament', state: tournament });
+  };
+
   return (
     <>
       <AppBar />
@@ -91,11 +107,13 @@ function ViewTournamentInfo({ location }) {
                   </Button>
                 )}
               </MuiThemeProvider>
-              {hideSolicitation === false
+              {hideSolicitation === false &&
+              solicitations !== undefined &&
+              solicitations.lenght !== 0
                 ? solicitations.map((solicitation) => {
                     return solicitation.accepted === false ? (
                       <Box
-                        id={solicitation.id}
+                        key={solicitation.id}
                         style={{
                           display: 'flex',
                           justifyContent: 'space-between',
@@ -119,6 +137,9 @@ function ViewTournamentInfo({ location }) {
                         >
                           Aceitar Solicitação
                         </Button>
+                        <Typography>
+                          {accepted ? 'Usuário inscrito com sucesso' : null}
+                        </Typography>
                       </Box>
                     ) : null;
                   })
@@ -148,9 +169,13 @@ function ViewTournamentInfo({ location }) {
               Esconder Participantes
             </Button>
           )}
-          {hideParticipant === false
+          {hideParticipant === false &&
+          participants !== undefined &&
+          participants.lengh !== 0
             ? players.map((participant, index) => {
-                return <Typography key={index}>{participant}</Typography>;
+                return (
+                  <Typography key={index}>{participant.user.name}</Typography>
+                );
               })
             : null}
         </Box>
@@ -161,6 +186,7 @@ function ViewTournamentInfo({ location }) {
             style={{ color: '#fff', margin: 'auto 0px' }}
             variant="contained"
             fullWidth
+            onClick={() => showRounds(location.state.tournament)}
           >
             Ver Partidas
           </Button>
