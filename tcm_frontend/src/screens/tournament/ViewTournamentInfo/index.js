@@ -11,6 +11,7 @@ import {
   MuiThemeProvider,
   Container,
 } from '@material-ui/core';
+import api from '../../../services/api';
 import AppBar from '../../../components/Appbar';
 import NavBar from '../../../components/Navbar';
 import User from '../../../services/user';
@@ -65,6 +66,11 @@ function ViewTournamentInfo({ location }) {
 
   const showRounds = (tournament) => {
     history.push({ pathname: '/viewtournament', state: tournament });
+  };
+
+  const initTournament = async (tournamentId) => {
+    console.log(tournamentId);
+    await api.get(`/generationround/${tournamentId}`);
   };
 
   return (
@@ -189,6 +195,17 @@ function ViewTournamentInfo({ location }) {
             onClick={() => showRounds(location.state.tournament)}
           >
             Ver Partidas
+          </Button>
+        </MuiThemeProvider>
+        <MuiThemeProvider theme={button}>
+          <Button
+            color="primary"
+            style={{ color: '#fff', margin: 'auto 0px' }}
+            variant="contained"
+            fullWidth
+            onClick={() => initTournament(location.state.tournament.id)}
+          >
+            Iniciar Torneio
           </Button>
         </MuiThemeProvider>
         <div className={classes.footer} />
