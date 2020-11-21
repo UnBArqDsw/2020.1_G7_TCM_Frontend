@@ -200,7 +200,7 @@ function ViewTournamentInfo({ location }) {
         <MuiThemeProvider theme={button}>
           <Button
             color="primary"
-            style={{ color: '#fff', margin: 'auto 0px' }}
+            style={{ color: '#fff', margin: '10px 0px' }}
             variant="contained"
             fullWidth
             onClick={() => initTournament(location.state.tournament.id)}
