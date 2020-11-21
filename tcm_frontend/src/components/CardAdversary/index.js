@@ -16,7 +16,7 @@ const CardAversary = ({ rounds }) => {
   const classes = useStyles();
   const [matchs, setmatchs] = useState([]);
   const [roundnotened, setroundnotened] = useState(false);
-  // const roundnotened = false;
+
   const history = useHistory();
   const aux = [];
 
@@ -48,6 +48,10 @@ const CardAversary = ({ rounds }) => {
     });
   }
 
+  const generationNextRound = async (tournamentId) => {
+    await api.post(`/generationnextround/${tournamentId}`);
+  };
+
   return (
     <div>
       {matchs !== []
@@ -67,7 +71,7 @@ const CardAversary = ({ rounds }) => {
           color="primary"
           variant="outlined"
           fullWidth
-          onClick={() => alert('teste')}
+          onClick={() => generationNextRound('tournamentid')}
         >
           Gerar proximo round
         </Button>
