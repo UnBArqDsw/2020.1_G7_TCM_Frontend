@@ -1,12 +1,16 @@
-import React from 'react';
-import { Container } from '@material-ui/core';
+import React, { useState } from 'react';
+import { Container, Typography } from '@material-ui/core';
 import { useStyles } from './styles';
 import Appbar from '../../../components/Appbar';
 import Navbar from '../../../components/Navbar';
 import ButtonBox from '../../../components/Buttonbox';
 
-const MatchResult = () => {
+const MatchResult = (props) => {
   const classes = useStyles();
+  const [winner, setWinner] = useState('none');
+  const [error, setError] = useState('');
+
+  const { player1, player2 } = props.match;
 
   const submitMatchResult = () => {
     let player1Value = document.querySelector('input[name=p1value]').value;
@@ -17,6 +21,14 @@ const MatchResult = () => {
     }
     if (!player2Value) {
       player2Value = 0;
+    }
+
+    if (player1Value > player2Value) {
+      setWinner(player1.id);
+    } else if (player2Value < player1Value) {
+      setWinner(player2.id);
+    } else {
+      setError('Não existem empates em tenis');
     }
 
     console.log(`player 1 digitou = ${player1Value}`);
@@ -51,6 +63,8 @@ const MatchResult = () => {
             <p className={classes.playerScoreText}>Jogador 2</p>
           </div>
         </div>
+
+        {error ? <Typography>{error}</Typography> : null}
       </div>
       <ButtonBox
         className={classes.buttonBox}
