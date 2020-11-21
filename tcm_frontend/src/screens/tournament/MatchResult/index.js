@@ -4,6 +4,7 @@ import { useStyles } from './styles';
 import Appbar from '../../../components/Appbar';
 import Navbar from '../../../components/Navbar';
 import ButtonBox from '../../../components/Buttonbox';
+import api from '../../../services/api';
 
 const MatchResult = (props) => {
   const classes = useStyles();
@@ -11,6 +12,11 @@ const MatchResult = (props) => {
   const [error, setError] = useState('');
 
   const { player1, player2 } = props.match;
+  const matchId = props.match.id;
+
+  async function send(data) {
+    await api.post('/friendly/add/match/result', data);
+  }
 
   const submitMatchResult = () => {
     let player1Value = document.querySelector('input[name=p1value]').value;
@@ -33,6 +39,12 @@ const MatchResult = (props) => {
 
     console.log(`player 1 digitou = ${player1Value}`);
     console.log(`player 2 digitou = ${player2Value}`);
+
+    const score = `${player1Value} x ${player2Value}`;
+
+    const data = { matchId, score, winner };
+
+    send(data);
   };
 
   return (
