@@ -12,7 +12,7 @@ import Opponents from '../Opponents/index';
 import { useStyles } from './styles';
 import api from '../../services/api';
 
-const CardAversary = ({ rounds }) => {
+const CardAversary = ({ rounds, idtournament }) => {
   const classes = useStyles();
   const [matchs, setmatchs] = useState([]);
   const [roundnotened, setroundnotened] = useState(false);
@@ -49,6 +49,7 @@ const CardAversary = ({ rounds }) => {
   }
 
   const generationNextRound = async (tournamentId) => {
+    // console.log(tournamentId);
     await api.post(`/generationnextround/${tournamentId}`);
   };
 
@@ -71,7 +72,7 @@ const CardAversary = ({ rounds }) => {
           color="primary"
           variant="outlined"
           fullWidth
-          onClick={() => generationNextRound('tournamentid')}
+          onClick={() => generationNextRound(idtournament)}
         >
           Gerar proximo round
         </Button>

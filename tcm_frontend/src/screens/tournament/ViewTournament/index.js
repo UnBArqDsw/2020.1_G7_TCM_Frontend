@@ -7,16 +7,16 @@ import CardAdversary from '../../../components/CardAdversary';
 import { useStyles } from './styles';
 
 const ViewTournament = ({ location }) => {
-  const { rounds } = location.state;
-
+  const { rounds, id } = location.state;
   const classe = useStyles();
+
   return (
     <>
       <Container>
         <div>
           <Appbar />
         </div>
-        <CardAdversary rounds={rounds} />
+        <CardAdversary rounds={rounds} idtournament={id} />
         <div className={classe.footer} />
       </Container>
       <Navbar />
