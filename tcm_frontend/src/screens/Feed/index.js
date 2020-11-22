@@ -43,7 +43,7 @@ const Feed = () => {
                     nome={torneio.name}
                     cidade={torneio.cidade}
                     endereco={torneio.endereco}
-                    data={torneio.data}
+                    data={torneio.start_date}
                   />
                 </div>
               );

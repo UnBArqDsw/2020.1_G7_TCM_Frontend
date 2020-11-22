@@ -15,7 +15,6 @@ import api from '../../services/api';
 const CardAversary = ({ rounds, idtournament }) => {
   const classes = useStyles();
   const [matchs, setmatchs] = useState([]);
-  const [roundnotened, setroundnotened] = useState(false);
 
   const history = useHistory();
   const aux = [];
@@ -23,7 +22,6 @@ const CardAversary = ({ rounds, idtournament }) => {
   rounds.map((rounds) => {
     aux.push(rounds.id);
   });
-
   const [lastItem] = aux.slice(-1);
 
   const getRounds = async () => {
@@ -38,8 +36,6 @@ const CardAversary = ({ rounds, idtournament }) => {
 
   let aux1 = false;
   matchs.map((match) => {
-    console.log(match.status);
-
     if (match.status === 'C') {
       aux1 = true;
     }
@@ -53,7 +49,6 @@ const CardAversary = ({ rounds, idtournament }) => {
   }
 
   const generationNextRound = async (tournamentId) => {
-    // console.log(tournamentId);
     const name = 'teste';
     await api.post(`/generationnextround/${tournamentId}`, {
       name,

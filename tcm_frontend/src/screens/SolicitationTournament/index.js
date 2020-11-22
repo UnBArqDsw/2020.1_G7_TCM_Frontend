@@ -10,7 +10,6 @@ import { useStyles } from './style';
 import tournament from '../../services/tournament';
 
 const SolicitationTournament = (props) => {
-  // console.log(props.location.state);
   const [error, setError] = useState('');
   const classes = useStyles();
   const {

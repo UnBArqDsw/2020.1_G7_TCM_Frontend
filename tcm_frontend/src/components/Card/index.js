@@ -5,10 +5,13 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import { useStyles } from './styles';
+import { formatData } from '../../utils/format';
 
 const Feed = (props) => {
   const classes = useStyles();
   const { nome, cidade, endereco, data } = props;
+  const date = new Date(data);
+  const formatDate = formatData(date);
   return (
     <Card className={classes.card}>
       <CardContent className={classes.stylecardcontent}>
@@ -24,7 +27,7 @@ const Feed = (props) => {
           </Typography>
           <Typography className={classes.stylefont}>
             Data:
-            {data}
+            {formatDate}
           </Typography>
         </Container>
       </CardContent>

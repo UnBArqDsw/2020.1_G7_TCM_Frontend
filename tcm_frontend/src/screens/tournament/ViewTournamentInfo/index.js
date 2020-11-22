@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-curly-newline */
+/* eslint-disable array-callback-return */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
@@ -10,206 +12,258 @@ import {
   Box,
   MuiThemeProvider,
   Container,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
 } from '@material-ui/core';
-import api from '../../../services/api';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { button, useStyles } from './style';
 import AppBar from '../../../components/Appbar';
 import NavBar from '../../../components/Navbar';
 import User from '../../../services/user';
 import Tournament from '../../../services/tournament';
-import { button, useStyles } from './style';
+import api from '../../../services/api';
 
 function ViewTournamentInfo({ location }) {
   const history = useHistory();
-  const classes = useStyles();
-  const [accepted, setAccepted] = useState(false);
-  const [hideSolicitation, setHideSolicitation] = useState(true);
-  const [hideParticipant, setHideParticipant] = useState(true);
-  const [players, setPlayers] = useState([]);
   const { ismanager } = location.state;
-  const {
-    id,
-    manager,
-    solicitations,
-    participants,
-  } = location.state.tournament;
+  const classes = useStyles();
+  const [tournament, setTournament] = useState({});
+  const [busy, setBusy] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [openParticipants, setOpenParticipants] = useState(false);
+  const [requesters, setRequesters] = useState([]);
+  const [names, setNames] = useState([]);
 
-  const searchParticipantsName = async () => {
-    const aux = [];
+  const { participants } = location.state.tournament;
+
+  const aux2 = [];
+  const rounds = [];
+
+  const getTournament = async () => {
+    const { data } = await api.get(
+      `tournaments/${location.state.tournament.id}`,
+    );
+    setTournament(data.tournament);
+    setRequesters(data.tournament.solicitations);
     if (participants !== undefined) {
       participants.map(async (participant) => {
-        await User.findById(participant.players).then((response) =>
-          aux.push(response.data),
-        );
+        const response = await User.findById(participant.players);
+        aux2.push(response.data.user.name);
       });
-      setPlayers(aux);
+      setNames(aux2);
     }
+    setBusy(false);
   };
 
   useEffect(() => {
-    searchParticipantsName();
+    getTournament();
   }, []);
-  const showSolicitation = () => {
-    setHideSolicitation(!hideSolicitation);
+
+  const handleClickOpen = () => {
+    setOpen(true);
   };
 
-  const showParticipant = () => {
-    setHideParticipant(!hideParticipant);
+  const handleClickOpenParticipants = () => {
+    setOpenParticipants(true);
   };
 
-  const handleAccept = async (user) => {
-    try {
-      await Tournament.acceptSolicitation(id, user).then(setAccepted(true));
-    } catch (err) {
-      setAccepted(false);
-    }
+  const handleCloseParticipants = () => {
+    setOpenParticipants(false);
   };
 
-  const showRounds = (tournament) => {
-    history.push({ pathname: '/viewtournament', state: tournament });
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const acceptSolicitation = async (id, requesterID) => {
+    await Tournament.acceptSolicitation(id, requesterID);
+    setRequesters(
+      requesters.filter((item) => item.requester.id !== requesterID),
+    );
   };
 
   const initTournament = async (tournamentId) => {
-    console.log(tournamentId);
     await api.post(`/generationround/${tournamentId}`);
   };
 
+  const showRounds = (tournamentData) => {
+    history.push({ pathname: '/viewtournament', state: tournamentData });
+  };
+
+  if (busy === true) {
+    return (
+      <>
+        <Typography>Aguarde estamos carregando os dados</Typography>
+      </>
+    );
+  }
   return (
     <>
       <AppBar />
       <div className={classes.footer} />
-      <Container maxWidth="md">
-        <Box
+      <Box
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: '80%',
+        }}
+      >
+        <Container
+          maxWidth="md"
           style={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            flex: 1,
           }}
         >
+          <Typography variant="h6" align="center">
+            {ismanager
+              ? `Bem vindo ao seu torneio, ${tournament.manager.name}`
+              : `Torneio de: ${tournament.manager.name}`}
+          </Typography>
           {ismanager === true ? (
             <>
-              <Typography>Bem vindo ao seu Torneio,</Typography>
-              <Typography>{manager.name}</Typography>
-              <div className={classes.footer} />
-              <MuiThemeProvider theme={button}>
-                {hideSolicitation === true ? (
-                  <Button
-                    style={{ color: '#fff', marginBottom: '10px' }}
-                    color="primary"
-                    variant="contained"
-                    fullWidth
-                    onClick={() => showSolicitation()}
-                  >
-                    Mostrar Solicitações
+              <Button
+                variant="contained"
+                style={{ color: '#fff', margin: '10px 0' }}
+                color="primary"
+                fullWidth
+                onClick={handleClickOpen}
+              >
+                Mostrar Solicitações
+              </Button>
+              <Dialog open={open} onClose={handleClose} maxWidth="md">
+                <DialogTitle style={{ alignSelf: 'center' }}>
+                  Solicitações
+                </DialogTitle>
+                <DialogContent>
+                  {requesters.map((req, index) => {
+                    if (req.accepted === false) {
+                      return (
+                        <Accordion key={index}>
+                          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                            <Typography>{req.requester.nickname}</Typography>
+                          </AccordionSummary>
+                          <AccordionDetails>
+                            <Box
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                width: '100%',
+                              }}
+                            >
+                              <Box>
+                                <Typography>{`Nome: ${req.requester.name}`}</Typography>
+                                <Typography>{`Nível: ${req.requester.level}`}</Typography>
+                              </Box>
+                              <MuiThemeProvider theme={button}>
+                                <Button
+                                  color="primary"
+                                  style={{
+                                    color: '#fff',
+                                    margin: '10px auto',
+                                    marginRight: '10px',
+                                  }}
+                                  variant="contained"
+                                  fullWidth
+                                  onClick={() =>
+                                    acceptSolicitation(
+                                      tournament.id,
+                                      req.requester.id,
+                                    )
+                                  }
+                                >
+                                  Aceitar Solicitação
+                                </Button>
+                              </MuiThemeProvider>
+                            </Box>
+                          </AccordionDetails>
+                        </Accordion>
+                      );
+                    }
+                    return null;
+                  })}
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose} color="primary" autoFocus>
+                    Fechar
                   </Button>
-                ) : (
-                  <Button
-                    style={{ marginBottom: '10px' }}
-                    color="primary"
-                    variant="outlined"
-                    fullWidth
-                    onClick={() => showSolicitation()}
-                  >
-                    Esconder Solicitações
-                  </Button>
-                )}
-              </MuiThemeProvider>
-              {hideSolicitation === false &&
-              solicitations !== undefined &&
-              solicitations.lenght !== 0
-                ? solicitations.map((solicitation) => {
-                    return solicitation.accepted === false ? (
-                      <Box
-                        key={solicitation.id}
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          alignItems: 'center',
-                          marginTop: '10px',
-                          width: '90%',
-                          margin: '10px auto',
-                        }}
-                      >
-                        <Typography>
-                          {solicitation.requester.nickname}
-                        </Typography>
-                        <Button
-                          style={{ color: '#fff' }}
-                          color="primary"
-                          variant="contained"
-                          onClick={
-                            () => handleAccept(solicitation.requester.id)
-                            // eslint-disable-next-line react/jsx-curly-newline
-                          }
-                        >
-                          Aceitar Solicitação
-                        </Button>
-                        <Typography>
-                          {accepted ? 'Usuário inscrito com sucesso' : null}
-                        </Typography>
-                      </Box>
-                    ) : null;
-                  })
-                : null}
+                </DialogActions>
+              </Dialog>
             </>
-          ) : (
-            <Typography>{`Torneio de: ${manager.name}`}</Typography>
-          )}
-          {hideParticipant === true ? (
-            <Button
-              color="primary"
-              style={{ color: '#fff', marginBottom: '10px' }}
-              variant="contained"
-              fullWidth
-              onClick={() => showParticipant()}
-            >
-              Mostrar Participantes
-            </Button>
-          ) : (
-            <Button
-              style={{ marginBottom: '10px' }}
-              color="primary"
-              variant="outlined"
-              fullWidth
-              onClick={() => showParticipant()}
-            >
-              Esconder Participantes
-            </Button>
-          )}
-          {hideParticipant === false &&
-          participants !== undefined &&
-          participants.lengh !== 0
-            ? players.map((participant, index) => {
-                return (
-                  <Typography key={index}>{participant.user.name}</Typography>
-                );
-              })
-            : null}
-        </Box>
-        <div className={classes.footer} />
-        <MuiThemeProvider theme={button}>
+          ) : null}
           <Button
-            color="primary"
-            style={{ color: '#fff', margin: 'auto 0px' }}
             variant="contained"
+            style={{ color: '#fff', margin: '10px auto' }}
+            color="primary"
             fullWidth
-            onClick={() => showRounds(location.state.tournament)}
+            onClick={handleClickOpenParticipants}
           >
-            Ver Partidas
+            Mostrar Participantes
           </Button>
-        </MuiThemeProvider>
-        <MuiThemeProvider theme={button}>
+          <Dialog open={openParticipants} onClose={handleClose} maxWidth="md">
+            <DialogTitle style={{ alignSelf: 'center' }}>
+              Participantes
+            </DialogTitle>
+            <DialogContent>
+              {names.map((participant, index) => {
+                return (
+                  <Typography key={index}>{`Nome: ${participant}`}</Typography>
+                );
+              })}
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={handleCloseParticipants}
+                color="primary"
+                autoFocus
+              >
+                Fechar
+              </Button>
+            </DialogActions>
+          </Dialog>
+          {tournament.rounds.length !== 0 ? (
+            <Button
+              variant="contained"
+              style={{ color: '#fff', margin: '10px auto' }}
+              color="primary"
+              fullWidth
+              onClick={() => showRounds(location.state.tournament)}
+            >
+              Ver partidas
+            </Button>
+          ) : null}
           <Button
-            color="primary"
-            style={{ color: '#fff', margin: '10px 0px' }}
             variant="contained"
+            style={{ color: '#fff', margin: '10px auto' }}
+            color="primary"
             fullWidth
-            onClick={() => initTournament(location.state.tournament.id)}
+            disabled={
+              rounds.length !== 0 || names.length < tournament.players_quantity
+            }
+            onClick={() => initTournament(tournament.id)}
           >
             Iniciar Torneio
           </Button>
-        </MuiThemeProvider>
+          <Button
+            variant="contained"
+            style={{ color: '#fff', marginTop: 'auto' }}
+            color="primary"
+            fullWidth
+            onClick={() => history.goBack()}
+          >
+            Voltar
+          </Button>
+        </Container>
         <div className={classes.footer} />
-      </Container>
+      </Box>
       <NavBar />
     </>
   );

@@ -29,9 +29,9 @@ const MatchResult = ({ location }) => {
   const handleSubimit = async (data, id) => {
     let winner_id = '';
     if (data.p1score > data.p2score) {
-      winner_id = player1.id;
+      winner_id = player1.id.id;
     } else {
-      winner_id = player2.id;
+      winner_id = player2.id.id;
     }
     const body = {
       winner_id,
